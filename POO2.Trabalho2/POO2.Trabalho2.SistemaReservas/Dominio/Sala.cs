@@ -15,6 +15,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         {
             Nome = nome;
             NumeroLugares = numeroLugares;
+            Lista.Add(this);
         }
 
         public override Sala SelecionarPorId(int id) => Lista.Find(x => x.Id == id);

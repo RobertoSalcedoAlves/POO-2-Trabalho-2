@@ -19,6 +19,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Nome = nome;
             Email = email;
             Ramal = ramal;
+            Lista.Add(this);
         }
 
         public override Funcionario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);

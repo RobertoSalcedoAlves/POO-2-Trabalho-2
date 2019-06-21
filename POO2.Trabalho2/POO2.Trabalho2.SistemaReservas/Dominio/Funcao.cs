@@ -10,7 +10,8 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
     {
         public string Descricao { get; set; }
 
-        public Funcao(string descricao) { Descricao = descricao; }
+        public Funcao(string descricao) { Descricao = descricao; Lista.Add(this);
+        }
 
         public override Funcao SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
     }

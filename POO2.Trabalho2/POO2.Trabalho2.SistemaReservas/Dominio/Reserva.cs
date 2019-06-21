@@ -22,6 +22,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Data = data;
             HoraInicio = horaInicio;
             DuracaoPrevista = duracao;
+            Lista.Add(this);
         }
 
         public override Reserva SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
