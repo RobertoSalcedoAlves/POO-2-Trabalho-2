@@ -8,11 +8,30 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Funcao : ClasseBase<Funcao, int>
     {
-        public string Descricao { get; set; }
+        public string Nome { get; set; }
+        public override string Descricao {
+            get { return string.Format($"Funcão: {this.Nome}"); }
+        }
 
-        public Funcao(string descricao) { Descricao = descricao; Lista.Add(this);
+        public Funcao(string nome)
+        {
+            Nome = nome; Lista.Add(this);
+            Lista.Add(this);
         }
 
         public override Funcao SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                return ((Funcao)obj).Id == this.Id;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

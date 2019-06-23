@@ -47,8 +47,9 @@
     <Compile Include="ClassesBase\RelatorioBase.cs" />
     <Compile Include="Dominio\Funcao.cs" />
     <Compile Include="Dominio\Funcionario.cs" />
+    <Compile Include="Dominio\Horario.cs" />
     <Compile Include="Dominio\RelatorioReservasArquivo.cs" />
-    <Compile Include="Dominio\RelatorioResevasConsole.cs" />
+    <Compile Include="Dominio\RelatorioReservasConsole.cs" />
     <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Sala.cs" />
     <Compile Include="Padroes\FactoryLog.cs" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

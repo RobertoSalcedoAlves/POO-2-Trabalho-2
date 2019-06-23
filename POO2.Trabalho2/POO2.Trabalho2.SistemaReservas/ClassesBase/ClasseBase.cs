@@ -12,6 +12,7 @@ namespace POO2.Trabalho2.SistemaReservas
         where TTipo : class
     {
         public int Id { get; set; }
+        public abstract string Descricao { get;}
         public List<TTipo> Lista { get; set; } = new List<TTipo>();
         private int ProximoId => Lista.Count() + 1;
 
@@ -22,5 +23,11 @@ namespace POO2.Trabalho2.SistemaReservas
         public void SalvarAtualizar(TTipo tipo) => Lista.Add(tipo);
         public IEnumerable<TTipo> SelecionarTodos() => Lista.ToList();
         public abstract TTipo SelecionarPorId(TChave id);
+
+        public override string ToString()
+        {
+            return Descricao;
+        }
+        public abstract override bool Equals(object obj);
     }
 }

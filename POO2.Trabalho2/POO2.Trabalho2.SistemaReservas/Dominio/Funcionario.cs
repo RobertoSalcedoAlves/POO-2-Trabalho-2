@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
@@ -12,6 +9,16 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public string Nome { get; set; }
         public string Email { get; set; }
         public int Ramal { get; set; }
+        public override string Descricao {
+            get {
+                StringBuilder retorno = new StringBuilder();
+                retorno.AppendLine(string.Format($"Nome: {this.Nome.ToString()}\t\n"));
+                retorno.AppendLine(string.Format($"Função: {this.Funcao.ToString()}"));
+                retorno.AppendLine(string.Format($"Email: {this.Email.ToString()}"));
+                retorno.AppendLine(string.Format($"Ramal: {this.Ramal.ToString()}"));
+                return retorno.ToString();
+            }
+        }
 
         public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
@@ -23,5 +30,18 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         }
 
         public override Funcionario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
+
+        public override bool Equals(object obj)
+        {
+            try
+            {
+                return ((Funcionario)obj).Id == this.Id;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
     }
 }

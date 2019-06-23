@@ -1,14 +1,15 @@
-﻿using System;
+﻿using POO2.Trabalho2.SistemaReservas.Dominio;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
     public interface IRelatorio
     {
-        string ToString();
+        void MontarRelatorio(IEnumerable<Reserva> reservas);
         void GerarRelatorio();
+        void GerarRelatorio(Sala sala);
+        void GerarRelatorio(DateTime data);
+        void GerarRelatorio(DateTime data, Sala sala);
     }
 }

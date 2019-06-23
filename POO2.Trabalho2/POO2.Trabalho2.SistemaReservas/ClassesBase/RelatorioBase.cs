@@ -2,28 +2,35 @@
 using POO2.Trabalho2.SistemaReservas.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class RelatorioBase : ClasseBase<RelatorioBase, int>, IRelatorio
     {
-        public static Reserva Reserva { get; set; }
-        public abstract void GerarRelatorio();
+        public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); }
+        public RelatorioBase(DateTime data) { GerarRelatorio(data); }
+        public RelatorioBase(Sala sala) { GerarRelatorio(sala); }
+        public RelatorioBase() { GerarRelatorio(); }
 
-        public override RelatorioBase SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
-        
-        public override string ToString()
-        {
-            StringBuilder retorno = new StringBuilder();
+        public override string Descricao {
+            get {
+                StringBuilder retorno = new StringBuilder();
 
-            foreach (var reserva in Reserva.Lista)
-            {
-
+                foreach (var reserva in Reserva.Reservas)
+                {
+                    retorno.AppendLine(reserva.ToString());
+                    retorno.Append("\t\n");
+                }
+                return retorno.ToString();
             }
-            return retorno.ToString();
         }
+
+        public override RelatorioBase SelecionarPorId(int id) => Lista.Find(x => x.Id == id);      
+        public abstract void MontarRelatorio(IEnumerable<Reserva> reservas);
+        public abstract void GerarRelatorio();
+        public abstract void GerarRelatorio(Sala sala);
+        public abstract void GerarRelatorio(DateTime data);
+        public abstract void GerarRelatorio(DateTime data, Sala sala);
     }
 }

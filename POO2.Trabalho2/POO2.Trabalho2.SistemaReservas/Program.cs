@@ -10,14 +10,16 @@ namespace POO2.Trabalho2.SistemaReservas
     class Program
     {
         private static List<Sala> Salas = new List<Sala>();
+        private static List<Horario> Horarios = new List<Horario>();
         private static List<Funcao> Funcoes = new List<Funcao>();
         private static List<Funcionario> Funcionarios = new List<Funcionario>();
         private static List<Reserva> Reservas = new List<Reserva>();
+        private static FactoryLog factoryRelatorio = new FactoryLog();
 
         static void Main(string[] args)
         {
             CriarDadosParaTeste();
-
+            
 
 
         }
@@ -25,6 +27,7 @@ namespace POO2.Trabalho2.SistemaReservas
         static void CriarDadosParaTeste()
         {
             CriarSalas();
+            CriarHorarios();
             CriarFuncoes();
             CriarFuncionarios();
             CriarReservas();
@@ -42,6 +45,13 @@ namespace POO2.Trabalho2.SistemaReservas
             Salas.Add(new Sala("109", 10));
             Salas.Add(new Sala("110", 20));
         }
+        private static void CriarHorarios()
+        {
+            for (int i = 8; i <= 17; i++)
+            {
+                Horarios.Add(new Horario(new TimeSpan(i, 0, 0), new TimeSpan(i + 1, 0, 0)));
+            }
+        }
         private static void CriarFuncoes()
         {
             Funcoes.Add(new Funcao("CEO"));
@@ -58,29 +68,28 @@ namespace POO2.Trabalho2.SistemaReservas
         private static void CriarFuncionarios()
         {
             Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Tio Patinhas", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Professor Pardal", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Capitão Boing", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Uguinho", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Zézinho", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Luizinho", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Maga Patalógica", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Pato Donald", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Margarida", "teste@teste.com", 77));
-            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Roberto", "teste@teste.com", 77));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Professor Pardal", "teste@teste.com", 87));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Capitão Boing", "teste@teste.com", 97));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Uguinho", "teste@teste.com", 67));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Zézinho", "teste@teste.com", 57));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Luizinho", "teste@teste.com", 47));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Maga Patalógica", "teste@teste.com", 37));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Pato Donald", "teste@teste.com", 27));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Margarida", "teste@teste.com", 17));
+            Funcionarios.Add(new Funcionario(Funcoes.ElementAt(0), "Roberto", "teste@teste.com", 107));
         }
         private static void CriarReservas()
         {
             int i = 0;
-            foreach(var funcionario in Funcionarios)
+            foreach (var funcionario in Funcionarios)
             {
                 Reservas.Add(new Reserva(
-                    funcionario, 
-                    Salas.ElementAt(i), 
-                    new DateTime(2020, i + 1, i + 1), 
-                    new TimeSpan(8, 0, 0), 
-                    new TimeSpan(i + 1, 0, 0)));
-                    i++;
-            }            
+                    funcionario,
+                    Salas[i],
+                    new DateTime(2020, i + 1, i + 1),
+                    Horarios[i]));
+                i++;
+            }
         }
     }
 }

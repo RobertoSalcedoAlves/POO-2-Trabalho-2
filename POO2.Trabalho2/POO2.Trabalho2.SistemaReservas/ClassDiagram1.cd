@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Reserva">
+    <Position X="7.25" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQBAAAAgAAAAQAAAAAgABAAAAAAAAEAAAA=</HashCode>
+      <FileName>Dominio\Reserva.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClasseBase&lt;TTipo, TChave&gt;">
+    <Position X="3.75" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEABCAAEgAAAAAAAAAQAAAABAAAAAAEAAIA=</HashCode>
+      <FileName>ClassesBase\ClasseBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.RelatorioBase">
+    <Position X="9.75" Y="8.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAQAAAAAAACAAEAAAA=</HashCode>
+      <FileName>ClassesBase\RelatorioBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Funcao">
+    <Position X="12.25" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Dominio\Funcao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Funcionario">
+    <Position X="14.5" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACABAAAAgAAAQAAAAAAAAAAAAAAAAAEAIAA=</HashCode>
+      <FileName>Dominio\Funcionario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Horario">
+    <Position X="16.75" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAACAgAAAAAAAAAAAAAAAAAAAAIUAAAA=</HashCode>
+      <FileName>Dominio\Horario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Sala">
+    <Position X="19" Y="8.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAABABAAhAAAAAACAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Dominio\Sala.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.RelatorioReservasArquivo">
+    <Position X="7.25" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAACAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Dominio\RelatorioReservasArquivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.RelatorioReservasConsole">
+    <Position X="11.75" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Dominio\RelatorioReservasConsole.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.ICRUD&lt;TTipo, TChave&gt;">
+    <Position X="6" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAQAAAABAAAAAAEAAIA=</HashCode>
+      <FileName>Interfaces\ICRUD.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.IRelatorio">
+    <Position X="9.75" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Interfaces\IRelatorio.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
