@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Dominio;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +20,9 @@ namespace POO2.Trabalho2.SistemaReservas
         static void Main(string[] args)
         {
             CriarDadosParaTeste();
-            
 
-
+            IRelatorio relatorio = factoryRelatorio.getRelatorio(FactoryLog.TipoRelatorio.Arquivo);
+            Console.ReadKey();
         }
 
         static void CriarDadosParaTeste()

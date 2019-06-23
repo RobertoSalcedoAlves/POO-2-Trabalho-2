@@ -13,8 +13,8 @@ namespace POO2.Trabalho2.SistemaReservas
     {
         public int Id { get; set; }
         public abstract string Descricao { get;}
-        public List<TTipo> Lista { get; set; } = new List<TTipo>();
-        private int ProximoId => Lista.Count() + 1;
+        public static List<TTipo> Lista { get; set; } = new List<TTipo>();
+        protected abstract int ProximoId { get; }
 
         public ClasseBase() { Id = ProximoId; }
 

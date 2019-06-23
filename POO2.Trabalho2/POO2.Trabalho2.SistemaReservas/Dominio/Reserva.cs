@@ -12,20 +12,22 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public Sala Sala { get; set; }
         public DateTime Data { get; set; }
         public Horario Horario { get; set; }
+        protected override int ProximoId { get { return Lista.Count + 1; } }
         public override string Descricao {
             get {
                 StringBuilder retorno = new StringBuilder();
-                retorno.AppendLine($"Nº: {this.Id.ToString()} | ");
-                retorno.AppendLine($"{this.Sala.ToString()}\t\n");
-                retorno.AppendLine($"{this.Funcionario.ToString()}\t\n");
-                retorno.AppendLine($"{this.Data.ToString("dd/mm/aaa")} | ");
+                retorno.Append($"{this.Id.ToString()} | ");
+                retorno.AppendLine($"{this.Sala.ToString()}");
+                retorno.Append($"{this.Data.ToString("dd/MM/yy")} | ");
                 retorno.AppendLine($"{this.Horario.ToString()}");
+                retorno.AppendLine($"{this.Funcionario.ToString()}");
                 return retorno.ToString();
             }
         }
 
         public Reserva(Funcionario funcionario, Sala sala, DateTime data, Horario horario)
         {
+            Id = ProximoId;
             Funcionario = funcionario;
             Sala = sala;
             Data = data;

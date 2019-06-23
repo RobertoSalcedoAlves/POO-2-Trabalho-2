@@ -8,28 +8,34 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class RelatorioReservasArquivo : RelatorioBase
     {
-        const string path = @"C:\Relatório de Reservas.txt";
+        const string NOME_ARQUIVO = @"\Relatório.txt";
+        public string Path { get; set; }
+        protected override int ProximoId { get { return Lista.Count + 1; } }
 
-        public RelatorioReservasArquivo(DateTime data, Sala sala) : base(data, sala) { }
-        public RelatorioReservasArquivo(DateTime data) : base(data) { }
-        public RelatorioReservasArquivo(Sala sala) : base(sala) { }
+        public RelatorioReservasArquivo(DateTime data, Sala sala) : base(data, sala) { Id = ProximoId; }
+        public RelatorioReservasArquivo(DateTime data) : base(data) { Id = ProximoId; }
+        public RelatorioReservasArquivo(Sala sala) : base(sala) { Id = ProximoId; }
         public RelatorioReservasArquivo() { }
 
         public override void MontarRelatorio(IEnumerable<Reserva> reservas)
         {
+            Console.Write("informe o diretório: ");
+            Path = string.Format(@"{0}\{1}", Console.ReadLine().Replace('/', '\\'), NOME_ARQUIVO);
+            Stream stream = File.Create(Path);
             try
             {
-                using (StreamWriter escritor = new StreamWriter(path))
+                using (StreamWriter escritor = new StreamWriter(stream))
                 {
                     foreach (var reserva in reservas)
-                        escritor.WriteLine(reserva.ToString() + "\t\n");
+                        escritor.WriteLine(reserva.ToString());
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Não foi possível gerar o relatório.\t\nErro: " + e.Message);
+                return;
             }
-            Console.WriteLine("Relatório gerado em: " + path.ToString());
+            Console.WriteLine("Relatório gerado em: " + Path.ToString());
         }
 
         public override void GerarRelatorio()

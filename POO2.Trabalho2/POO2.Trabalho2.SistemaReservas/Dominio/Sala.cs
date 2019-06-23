@@ -10,10 +10,12 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
     {
         public string Nome { get; set; }
         public int NumeroLugares { get; set; }
+        protected override int ProximoId { get { return Lista.Count + 1; } }
         public override string Descricao { get => string.Format($"Sala: {this.Nome.ToString()}"); }
 
         public Sala(string nome, int numeroLugares)
         {
+            Id = ProximoId;
             Nome = nome;
             NumeroLugares = numeroLugares;
             Lista.Add(this);

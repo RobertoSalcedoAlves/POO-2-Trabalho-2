@@ -9,11 +9,12 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public string Nome { get; set; }
         public string Email { get; set; }
         public int Ramal { get; set; }
+        protected override int ProximoId { get { return Lista.Count + 1; } }
         public override string Descricao {
             get {
                 StringBuilder retorno = new StringBuilder();
-                retorno.AppendLine(string.Format($"Nome: {this.Nome.ToString()}\t\n"));
-                retorno.AppendLine(string.Format($"Função: {this.Funcao.ToString()}"));
+                retorno.AppendLine(string.Format($"Funcionário (a): {this.Nome.ToString()}"));
+                retorno.AppendLine(string.Format(this.Funcao.ToString()));
                 retorno.AppendLine(string.Format($"Email: {this.Email.ToString()}"));
                 retorno.AppendLine(string.Format($"Ramal: {this.Ramal.ToString()}"));
                 return retorno.ToString();
@@ -22,6 +23,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 
         public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
+            Id = ProximoId;
             Funcao = funcao;
             Nome = nome;
             Email = email;

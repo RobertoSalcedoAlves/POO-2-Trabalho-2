@@ -11,6 +11,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public TimeSpan Inicio { get; set; }
         public TimeSpan Fim { get; set; }
         public TimeSpan DuracaoPrevista => Fim - Inicio;
+        protected override int ProximoId { get { return Lista.Count + 1; } }
         public override string Descricao {
             get {
                 return string.Format(
@@ -21,6 +22,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 
         public Horario(TimeSpan horaInicio, TimeSpan horaFim)
         {
+            Id = ProximoId;
             Inicio = horaInicio;
             Fim = horaFim;
             Lista.Add(this);
