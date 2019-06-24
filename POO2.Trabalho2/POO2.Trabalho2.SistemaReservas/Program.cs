@@ -1,10 +1,12 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Dominio;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
+using static POO2.Trabalho2.Util.FormataConsole;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
@@ -16,13 +18,45 @@ namespace POO2.Trabalho2.SistemaReservas
         private static List<Funcionario> Funcionarios = new List<Funcionario>();
         private static List<Reserva> Reservas = new List<Reserva>();
         private static FactoryLog factoryRelatorio = new FactoryLog();
+        private Pasta PastaRaiz = new Pasta("Raiz");
 
         static void Main(string[] args)
         {
-            CriarDadosParaTeste();
+            MenuSuerior();
+            //CriarDadosParaTeste();
 
-            IRelatorio relatorio = factoryRelatorio.getRelatorio(FactoryLog.TipoRelatorio.Arquivo);
+            //ConsoleKeyInfo acao = new ConsoleKeyInfo();
+            //bool navegou, removeu;
+            //do
+            //{
+            //    Console.Clear();
+            //    navegou = acao.Key == ConsoleKey.UpArrow || acao.Key == ConsoleKey.DownArrow ? true : false;
+            //    removeu = acao.Key == ConsoleKey.R ? true : false;
+            //    MenuSuerior();
+            //    //RenderizarCarrinho(acao.Key, navegou, removeu);
+            //    Console.WriteLine("Escolha uma ação");
+            //    acao = Console.ReadKey(false);
+            //}
+            //while (acao.Key != ConsoleKey.Escape);
+
             Console.ReadKey();
+        }
+
+        private static void MenuSuerior()
+        {
+            Linha('=');
+            Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
+            Linha('=');
+            Imprimir(Justificado(new List<string> {" ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
+            Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
+            Linha('-');
+            Selecionar("Selecionado");
+            Aviso("Aviso");
+            Numeracao(new List<string> { "Roberto", "Débora", "Mellyssa", "Thomas" }, Dir.H);
+            Console.WriteLine();
+            CriarPastasEArquivos();
+            //PastaRaiz.Estruturar();
+
         }
 
         static void CriarDadosParaTeste()
@@ -32,6 +66,16 @@ namespace POO2.Trabalho2.SistemaReservas
             CriarFuncoes();
             CriarFuncionarios();
             CriarReservas();
+            CriarPastasEArquivos();
+        }
+        private static void CriarPastasEArquivos()
+        {
+            Pasta pasta = new Pasta("Primeira nível 1");
+            Pasta p2 = new Pasta("Pasta2");
+            p2.Adicionar(new Arquivo("Arquivo teste", "Conteúdo de testes"));
+
+            pasta.Adicionar(p2);
+            pasta.Estruturar();
         }
         private static void CriarSalas()
         {

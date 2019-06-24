@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{953C59B9-F4ED-4B90-95E9-A386EDF9B201}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>POO2.Trabalho2.SistemaReservas</RootNamespace>
-    <AssemblyName>POO2.Trabalho2.SistemaReservas</AssemblyName>
+    <ProjectGuid>{BAB5A7EE-24B1-45F3-8605-B6B62B5810B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>POO2.Trabalho2.Util</RootNamespace>
+    <AssemblyName>POO2.Trabalho2.Util</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,37 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClassesBase\ClasseBase.cs" />
-    <Compile Include="ClassesBase\ObjetoBase.cs" />
-    <Compile Include="ClassesBase\RelatorioBase.cs" />
-    <Compile Include="Dominio\Funcao.cs" />
-    <Compile Include="Dominio\Funcionario.cs" />
-    <Compile Include="Dominio\Horario.cs" />
-    <Compile Include="Dominio\RelatorioReservasArquivo.cs" />
-    <Compile Include="Dominio\RelatorioReservasConsole.cs" />
-    <Compile Include="Dominio\Reserva.cs" />
-    <Compile Include="Dominio\Sala.cs" />
-    <Compile Include="Interfaces\IObjeto.cs" />
-    <Compile Include="ClassesBase\PastaBase.cs" />
-    <Compile Include="ClassesBase\ArquivoBase.cs" />
-    <Compile Include="Padroes\Composite\Arquivo.cs" />
-    <Compile Include="Padroes\Composite\Pasta.cs" />
-    <Compile Include="Padroes\FactoryLog.cs" />
-    <Compile Include="Interfaces\ICRUD.cs" />
-    <Compile Include="Interfaces\IRelatorio.cs" />
-    <Compile Include="Padroes\Iterator.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="FormataConsole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\POO2.Trabalho2.Util\POO2.Trabalho2.Util.csproj">
-      <Project>{BAB5A7EE-24B1-45F3-8605-B6B62B5810B2}</Project>
-      <Name>POO2.Trabalho2.Util</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

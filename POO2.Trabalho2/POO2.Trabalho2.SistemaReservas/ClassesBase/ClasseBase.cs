@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace POO2.Trabalho2.SistemaReservas
+namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class ClasseBase<TTipo, TChave> : Iterator<TTipo>, ICRUD<TTipo, TChave>
         where TTipo : class
@@ -24,10 +24,7 @@ namespace POO2.Trabalho2.SistemaReservas
         public IEnumerable<TTipo> SelecionarTodos() => Lista.ToList();
         public abstract TTipo SelecionarPorId(TChave id);
 
-        public override string ToString()
-        {
-            return Descricao;
-        }
+        public override string ToString() => Descricao;
         public abstract override bool Equals(object obj);
     }
 }
