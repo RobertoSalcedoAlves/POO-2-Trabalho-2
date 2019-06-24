@@ -1,5 +1,6 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,9 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public string Nome { get; set; }
         public int Nivel { get; set; } = 0;
         public abstract int Bytes { get; }
+        public abstract IObjeto Pai { get; set; }
+        public abstract FormataConsole.Cor Cor { get; set; }
+        public abstract Menu Menu { get; set; }
 
         public IObjeto Converter(IObjeto objeto)
         {
@@ -25,17 +29,16 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             }
         }
 
-        public abstract TipoObjeto Tipo { get; }
-
         public string PathVirtual {
             get {
                 return Tipo == TipoObjeto.Pasta ? string.Format($@"{Nome}\") : Nome;
             }
             set { }
-        }        
+        }
+        public abstract TipoObjeto Tipo { get; }
 
         public abstract void Adicionar(IObjeto o);
         public abstract override string ToString();
-        public abstract void Estruturar();
+        public abstract bool EstruturaFilhos();
     }
 }

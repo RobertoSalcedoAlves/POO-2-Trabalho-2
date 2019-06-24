@@ -88,11 +88,13 @@ namespace POO2.Trabalho2.Util
                 case Cor.Pt: return ConsoleColor.Black;
                 case Cor.Vm: return ConsoleColor.Red;
                 case Cor.Vd: return ConsoleColor.Green;
+                case Cor.PdFnd: return ConsoleColor.Black;
+                case Cor.PdTxt: return ConsoleColor.White;
                 default: return ConsoleColor.White;
             }
         }
 
-        public enum Cor { Am, Az, Bc, Cz, Pt, Rs, Vd, Vm }
+        public enum Cor { Am, Az, Bc, Cz, Pt, Rs, Vd, Vm, PdFnd, PdTxt }
         public enum Dir { H, V }
     }
 }

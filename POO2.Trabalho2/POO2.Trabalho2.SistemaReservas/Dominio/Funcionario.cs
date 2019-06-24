@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.Util;
 using System;
 using System.Text;
 
@@ -22,6 +23,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
         }
 
+        public override Menu Menu { get { return new Menu("Funcionários"); } set { } }
         public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
             Id = ProximoId;

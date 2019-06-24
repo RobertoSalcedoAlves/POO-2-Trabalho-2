@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,10 +14,10 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
     {
         public int Id { get; set; }
         public abstract string Descricao { get;}
-        public static List<TTipo> Lista { get; set; } = new List<TTipo>();
-        protected abstract int ProximoId { get; }
-
-        public ClasseBase() { Id = ProximoId; }
+        public static List<TTipo> Lista { get; set; } = new List<TTipo>();        
+        protected abstract int ProximoId { get; }        
+        public ClasseBase() { Id = ProximoId;}
+        public abstract Menu Menu { get; set; }
 
         public void Excluir(TTipo tipo) => Lista.Remove(tipo);
         public void ExcluirPorID(TChave id) => Lista.Remove(SelecionarPorId(id));

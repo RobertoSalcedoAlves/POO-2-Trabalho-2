@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public int NumeroLugares { get; set; }
         protected override int ProximoId { get { return Lista.Count + 1; } }
         public override string Descricao { get => string.Format($"Sala: {this.Nome.ToString()}"); }
+
+        public override Menu Menu { get { return new Menu("Salas"); } set { } }
 
         public Sala(string nome, int numeroLugares)
         {

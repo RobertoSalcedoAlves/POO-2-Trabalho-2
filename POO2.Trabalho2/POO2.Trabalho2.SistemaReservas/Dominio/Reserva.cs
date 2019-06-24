@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,6 +26,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 return retorno.ToString();
             }
         }
+        public override Menu Menu { get { return new Menu("Reservas"); } set { } }
 
         public Reserva(Funcionario funcionario, Sala sala, DateTime data, Horario horario)
         {

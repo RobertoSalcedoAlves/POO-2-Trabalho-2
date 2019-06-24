@@ -1,10 +1,6 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using POO2.Trabalho2.Util;
 
 namespace POO2.Trabalho2.SistemaReservas.Padroes.Composite
 {

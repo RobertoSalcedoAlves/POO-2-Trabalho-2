@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
-    public interface IRelatorio
+    public interface IRelatorio : IMenu
     {
         void MontarRelatorio(IEnumerable<Reserva> reservas);
         void GerarRelatorio();

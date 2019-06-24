@@ -1,5 +1,6 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Dominio;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,8 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 return retorno.ToString();
             }
         }
+
+        public override Menu Menu { get { return new Menu("Relatórios"); } set { } }
 
         public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); }
         public RelatorioBase(DateTime data) { GerarRelatorio(data); }

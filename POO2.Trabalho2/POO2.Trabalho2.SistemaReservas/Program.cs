@@ -72,10 +72,13 @@ namespace POO2.Trabalho2.SistemaReservas
         {
             Pasta pasta = new Pasta("Primeira nível 1");
             Pasta p2 = new Pasta("Pasta2");
-            p2.Adicionar(new Arquivo("Arquivo teste", "Conteúdo de testes"));
-
             pasta.Adicionar(p2);
-            pasta.Estruturar();
+            pasta.Adicionar(new Pasta("Pasta3"));
+            p2.Adicionar(new Arquivo("Arquivo teste", "Conteúdo de testes"));
+            p2.Adicionar(new Arquivo("Arquivo teste2", "Conteúdo de testes adfasdfasdf"));
+
+
+            pasta.Estrutura();
         }
         private static void CriarSalas()
         {

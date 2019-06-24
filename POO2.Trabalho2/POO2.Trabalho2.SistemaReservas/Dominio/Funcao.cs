@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override string Descricao {
             get { return string.Format($"Funcão: {this.Nome}"); }
         }
+        public override Menu Menu { get { return new Menu("Funções"); } set { } }
 
         public Funcao(string nome)
         {

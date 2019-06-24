@@ -7,6 +7,7 @@ using System.Linq;
 using static POO2.Trabalho2.Util.FormataConsole;
 using System.Text;
 using System.Threading.Tasks;
+using POO2.Trabalho2.Util;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
@@ -15,14 +16,18 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
     {
         public override int Bytes { get { return Conteudo.Sum(x => x.Bytes); } }
         public override TipoObjeto Tipo { get { return TipoObjeto.Pasta; } }
-
+        public override IObjeto Pai { get; set; }
+        public override Cor Cor { get { return Cor.Am; } set { } }
+        public override Menu Menu { get { return new Menu("Pasta"); } set { } }
         public ICollection<IObjeto> Conteudo = new List<IObjeto>();
+        public static int teste { get; set; } = 0;
 
-        public PastaBase(string nome) => Nome = nome;
+        public PastaBase(string nome) { Nome = nome; Nivel += 3; }
 
         public override void Adicionar(IObjeto objeto)
         {
-            objeto.Nivel = this.Nivel + 3;
+            objeto.Nivel = Nivel + 3;
+            objeto.Pai = this;
             objeto.PathVirtual = this.PathVirtual + objeto.PathVirtual;
             this.Conteudo.Add(objeto);
         }
@@ -75,13 +80,27 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         private Arquivo ConverterEmArquivo(IObjeto objeto) => (Arquivo)objeto;
         private Pasta ConverterEmPasta(IObjeto objeto) => (Pasta)objeto;
 
-        public override string ToString()
+        public override string ToString() => string.Format($"{ new String(' ', this.Nivel)}{this.Nome} [{Bytes.ToString()} bytes]");
+
+        public bool Estrutura()
         {
-            string retorno = string.Format($"{ new String(' ', this.Nivel)}{this.Nome}({Bytes.ToString()})\t\n");
-            foreach (var item in Conteudo)
-                retorno += item;
-            return retorno;
+            Imprimir(this.ToString(), this.Cor);
+            try { this.EstruturaFilhos(); return true; }
+            catch (Exception) { return false; }
         }
-        public override void Estruturar() => Imprimir(this.ToString());
+
+        public override bool EstruturaFilhos()
+        {
+            try
+            {
+                foreach (var noh in this.Conteudo)
+                {
+                    Imprimir(noh.ToString(), noh.Cor);
+                    noh.EstruturaFilhos();
+                }
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
     }
 }

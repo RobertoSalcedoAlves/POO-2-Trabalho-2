@@ -54,6 +54,7 @@
     <Compile Include="Dominio\RelatorioReservasConsole.cs" />
     <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Sala.cs" />
+    <Compile Include="Interfaces\IMenu.cs" />
     <Compile Include="Interfaces\IObjeto.cs" />
     <Compile Include="ClassesBase\PastaBase.cs" />
     <Compile Include="ClassesBase\ArquivoBase.cs" />
