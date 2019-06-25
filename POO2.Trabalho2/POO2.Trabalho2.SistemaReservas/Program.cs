@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
+using POO2.Trabalho2.Util;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
@@ -19,10 +20,11 @@ namespace POO2.Trabalho2.SistemaReservas
         private static List<Reserva> Reservas = new List<Reserva>();
         private static FactoryLog factoryRelatorio = new FactoryLog();
         private Pasta PastaRaiz = new Pasta("Raiz");
-
+        private static Menu<Reserva> Menus = new Menu<Reserva>(new Reserva(new Funcionario(new Funcao("teste"), "zezinho", "teste.com", 22), new Sala("salaNome", 20), DateTime.Now, new Horario(new TimeSpan(8, 0, 0), new TimeSpan(8, 0, 0))), "Título teste", new List<string> { "opção 1", "opção 2" });
         static void Main(string[] args)
         {
-            MenuSuerior();
+            Menu<Reserva>.Rodar();
+            //MenuSuerior();
             //CriarDadosParaTeste();
 
             //ConsoleKeyInfo acao = new ConsoleKeyInfo();

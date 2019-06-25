@@ -4,7 +4,7 @@ using POO2.Trabalho2.Util;
 
 namespace POO2.Trabalho2.SistemaReservas.Padroes.Composite
 {
-    public class Arquivo : ArquivoBase<IObjeto>
+    public class Arquivo : ArquivoBase<IObjeto<IMenu<Arquivo>>>
     {
         public Arquivo(string nome, string conteudo = "") : base(nome, conteudo) { }
     }

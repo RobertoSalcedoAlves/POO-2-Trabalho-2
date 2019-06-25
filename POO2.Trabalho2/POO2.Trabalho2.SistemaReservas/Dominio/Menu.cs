@@ -46,26 +46,16 @@ namespace POO2.Trabalho2.Util
 
             Console.ReadKey();
         }
-
-        private static void Navegar()
+        
+        private static void MenuRaiz()
         {
-            if (acao.Equals(ConsoleKey.UpArrow))
-                Objeto.MoveBefore();
-            else if (acao.Equals(ConsoleKey.DownArrow))
-                Objeto.MoveNext();
+            Linha('=');
+            Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
+            Linha('=');
+            Imprimir(Justificado(new List<string> { " ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
+            Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
+            Linha('-');
         }
-        private static void Abriu() => ((TTipo)Objeto).ToString();
-        private static void Remover() => Objeto.RemoveItem(Objeto.Current);
-
-        private static void MostrarConteudo()
-        {
-            foreach (var item in Objeto.Itens)
-            {
-                if (item.Equals(Objeto.Current)) { Selecionar(item.ToString()); }                    
-                else { Console.WriteLine(item); }
-            }
-        }
-
         private static void SubMenu()
         {
             do
@@ -92,7 +82,6 @@ namespace POO2.Trabalho2.Util
             }
             while (acao.Key != ConsoleKey.Escape);
         }
-
         private static void Arvore()
         {
             do
@@ -109,16 +98,24 @@ namespace POO2.Trabalho2.Util
                 acao = Console.ReadKey(false);
             }
             while (acao.Key != ConsoleKey.Escape);
-        }
+        }        
 
-        private static void MenuRaiz()
+        private static void Navegar()
         {
-            Linha('=');
-            Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
-            Linha('=');
-            Imprimir(Justificado(new List<string> { " ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
-            Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
-            Linha('-');            
+            if (acao.Equals(ConsoleKey.UpArrow))
+                Objeto.MoveBefore();
+            else if (acao.Equals(ConsoleKey.DownArrow))
+                Objeto.MoveNext();
+        }
+        private static void Abriu() => ((TTipo)Objeto).ToString();
+        private static void Remover() => Objeto.RemoveItem(Objeto.Current);
+        private static void MostrarConteudo()
+        {
+            foreach (var item in Objeto.Itens)
+            {
+                if (item.Equals(Objeto.Current)) { Selecionar(item.ToString()); }
+                else { Console.WriteLine(item); }
+            }
         }
     }
 }
