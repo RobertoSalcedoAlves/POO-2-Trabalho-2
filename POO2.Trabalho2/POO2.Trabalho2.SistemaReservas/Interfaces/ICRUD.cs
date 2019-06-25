@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
-    public interface ICRUD<TTipo, TChave> : IMenu
+    public interface ICRUD<TTipo, TChave> : IMenu<TTipo>
         where TTipo : class
     {
         void SalvarAtualizar(TTipo tipo);

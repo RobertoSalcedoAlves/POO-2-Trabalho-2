@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
-    public interface IMenu
+    public interface IMenu<TTipo> where TTipo : class
     {
-        Menu Menu { get; set; }
+        Menu<TTipo> Menu { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
-    public abstract class RelatorioBase : ClasseBase<RelatorioBase, int>, IRelatorio
+    public abstract class RelatorioBase : ClasseBase<RelatorioBase, int>, IRelatorio, IMenu<RelatorioBase>
     {
         public override string Descricao {
             get {
@@ -20,12 +20,10 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 return retorno.ToString();
             }
         }
-
-        public override Menu Menu { get { return new Menu("Relatórios"); } set { } }
-
-        public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); }
-        public RelatorioBase(DateTime data) { GerarRelatorio(data); }
-        public RelatorioBase(Sala sala) { GerarRelatorio(sala); }
+        public override Menu<RelatorioBase> Menu { get { return new Menu<RelatorioBase>(this,"Relatórios"); } set { } }
+        public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); Itens.AddLast(this); }
+        public RelatorioBase(DateTime data) { GerarRelatorio(data); Itens.AddLast(this); }
+        public RelatorioBase(Sala sala) { GerarRelatorio(sala); Itens.AddLast(this); }
         public RelatorioBase() { GerarRelatorio(); }        
 
         public override RelatorioBase SelecionarPorId(int id) => Lista.Find(x => x.Id == id);      

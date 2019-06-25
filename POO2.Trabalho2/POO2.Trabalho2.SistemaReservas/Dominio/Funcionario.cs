@@ -23,7 +23,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
         }
 
-        public override Menu Menu { get { return new Menu("Funcionários"); } set { } }
+        public override Menu<Funcionario> Menu { get { return new Menu<Funcionario>(this, "Funcionários"); } set { } }
         public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
             Id = ProximoId;

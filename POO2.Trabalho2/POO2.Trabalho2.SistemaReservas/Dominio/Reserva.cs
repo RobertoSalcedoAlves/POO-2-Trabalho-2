@@ -26,7 +26,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 return retorno.ToString();
             }
         }
-        public override Menu Menu { get { return new Menu("Reservas"); } set { } }
+        public override Menu<Reserva> Menu { get { return new Menu<Reserva>(this, "Reservas"); } set { } }
 
         public Reserva(Funcionario funcionario, Sala sala, DateTime data, Horario horario)
         {

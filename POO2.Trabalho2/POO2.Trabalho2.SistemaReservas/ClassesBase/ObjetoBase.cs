@@ -9,26 +9,17 @@ using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
-    public abstract class ObjetoBase<TTipo> : Iterator<TTipo>, IObjeto
+    public abstract class ObjetoBase<TTipo> : Iterator<TTipo>, IObjeto<TTipo>
         where TTipo : class
     {
         public string Nome { get; set; }
         public int Nivel { get; set; } = 0;
         public abstract int Bytes { get; }
-        public abstract IObjeto Pai { get; set; }
+        public abstract IObjeto<TTipo> Pai { get; set; }
         public abstract FormataConsole.Cor Cor { get; set; }
-        public abstract Menu Menu { get; set; }
-
-        public IObjeto Converter(IObjeto objeto)
-        {
-            switch (objeto.Tipo)
-            {
-                case TipoObjeto.Arquivo: return (Arquivo)objeto;
-                case TipoObjeto.Pasta: return (Pasta)objeto;
-                default: return (Pasta)objeto;
-            }
-        }
-
+        public abstract Menu<TTipo> Menu { get; set; }
+        public Arquivo ConverterEmArquivo(IObjeto<TTipo> objeto) => (Arquivo)objeto;
+        public Pasta ConverterEmPasta(IObjeto<TTipo> objeto) => (Pasta)objeto;
         public string PathVirtual {
             get {
                 return Tipo == TipoObjeto.Pasta ? string.Format($@"{Nome}\") : Nome;
@@ -36,8 +27,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             set { }
         }
         public abstract TipoObjeto Tipo { get; }
-
-        public abstract void Adicionar(IObjeto o);
+        public abstract void Adicionar(IObjeto<TTipo> objeto);
         public abstract override string ToString();
         public abstract bool EstruturaFilhos();
     }

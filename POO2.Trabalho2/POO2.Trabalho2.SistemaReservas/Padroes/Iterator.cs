@@ -1,19 +1,19 @@
-﻿using System.Collections;
+﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
-    public abstract class Iterator<TTipo> : IEnumerator
+    public abstract class Iterator<TTipo> : IIterator<TTipo>
         where TTipo : class
     {
-        public LinkedList<TTipo> itens = new LinkedList<TTipo>();
-        private int indice { get; set; }
+        public LinkedList<object> Itens { get; set; } = new LinkedList<object>();
+        public int indice { get; set; }
         public void Reset() => indice = 0;
-        public object Current => PegaItem(indice);
-        private bool EhUltimo() => indice == PegaNumeroItems() - 1 ? true : false;
-        private bool EhPrimeiro() => indice == 0 ? true : false;
-
+        object IIterator<TTipo>.Current { get { return PegaItem(indice); } set {} }
+        public bool EhUltimo() => indice == PegaNumeroItems() - 1 ? true : false;
+        public bool EhPrimeiro() => indice == 0 ? true : false;
         public bool MoveNext()
         {
             if (!EhUltimo()) { indice++; return true; }
@@ -26,11 +26,14 @@ namespace POO2.Trabalho2.SistemaReservas
         }
         public int PegaNumeroItems()
         {
-            return itens.Count;
+            return Itens.Count;
         }
-        public TTipo PegaItem(int index)
+        public object PegaItem(int index)
         {
-            return itens.ElementAt(index);
+            return Itens.ElementAt(index);
         }
+        public void Dispose() => this.Dispose();
+        public void AdicionaItem(object item) => Itens.AddLast(item);
+        public void RemoveItem(object item) => Itens.Remove(item);
     }
 }
