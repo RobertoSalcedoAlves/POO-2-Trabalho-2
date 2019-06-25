@@ -76,7 +76,10 @@ namespace POO2.Trabalho2.Util
 
         public static void Selecionar(string conteudo) => Imprimir(conteudo, Cor.Az, Cor.Am);
         public static void Aviso(string conteudo) => Imprimir(conteudo, Cor.Vm);
-        public static void Destaque(string conteudo) => Imprimir(conteudo, Cor.Vd);
+        public static void Destaque(string conteudo, Cor cor) => Imprimir(conteudo, cor);
+
+        public static void Titulo1(string conteudo) => Destaque(Centralizado(conteudo), Cor.Vd);
+        public static void Titulo2(string conteudo) => Destaque(Centralizado(conteudo), Cor.Am);
 
         private static ConsoleColor Txt(Cor cor)
         {

@@ -9,11 +9,6 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
     public abstract class ArquivoBase<TTipo> : ObjetoBase<TTipo>
         where TTipo : class
     {
-        public string Conteudo { get; set; }
-        public override int Bytes { get; }
-        public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
-        public override IObjeto Pai { get; set; }
-        public override Cor Cor { get { return Cor.Az; } set { } }
         public ArquivoBase(string nome, string conteudo = "")
         {
             Nivel = 3;
@@ -22,6 +17,11 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Conteudo = conteudo;
             Itens.AddLast(this);
         }
+        public string Conteudo { get; set; }
+        public override int Bytes { get; }
+        public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
+        public override IObjeto Pai { get; set; }
+        public override Cor Cor { get { return Cor.Az; } set { } }
         public override void Adicionar(IObjeto objeto) => Negado();
         public void Remover(IObjeto o) => Negado();
         private void Negado() => Console.WriteLine("Não permitido");
@@ -32,7 +32,8 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         {
             do
             {
-                //Montar aqui
+                Titulo2("OPÇÕES DE ARQUIVOS");
+
                 Escolher();
                 if (Opcao1) { }
                 if (Opcao2) { }
@@ -41,9 +42,9 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 
 
                 Linha('=');
-                Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
+                
                 Linha('=');
-                Numeracao(new List<string> { "Reservas", "Funcionários", "Relatórios" }, Dir.H);
+                Numeracao(new List<string> { "Novo", "Localizar", "Excluir" }, Dir.H);
                 Linha('-');
                 Imprimir(Justificado(new List<string> { " ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
                 Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
@@ -54,9 +55,9 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 
                 //RenderizarCarrinho(acao.Key, navegou, removeu);
                 Console.WriteLine("Escolha uma ação");
-                acao = Console.ReadKey(false);
+                Acao = Console.ReadKey(false);
             }
-            while (acao.Key != ConsoleKey.Escape);
+            while (Acao.Key != ConsoleKey.Escape);
 
             Console.ReadKey();
         }

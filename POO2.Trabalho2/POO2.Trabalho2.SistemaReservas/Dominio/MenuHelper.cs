@@ -40,7 +40,7 @@ namespace POO2.Trabalho2.Util
         public static void MenuRaiz()
         {
             Linha('=');
-            Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
+            Titulo1("SISTEMA DE RESERVA DE SALAS");
             Linha('=');
             Numeracao(new List<string> { "Reservas", "Funcionários", "Relatórios" }, Dir.H);
             Linha('-');
