@@ -12,9 +12,8 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public string Conteudo { get; set; }
         public override int Bytes { get; }
         public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
-        public override IObjeto<TTipo> Pai { get; set; }
+        public override IObjeto Pai { get; set; }
         public override Cor Cor { get { return Cor.Az; } set { } }
-        public override Menu<TTipo> Menu { get { return new Menu<TTipo>(this,"Arquivo"); } set { } }
         public ArquivoBase(string nome, string conteudo = "")
         {
             Nivel = 3;
@@ -23,10 +22,44 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Conteudo = conteudo;
             Itens.AddLast(this);
         }
-        public override void Adicionar(IObjeto<TTipo> objeto) =>  Negado();
-        public void Remover(IObjeto<TTipo> o) => Negado();
+        public override void Adicionar(IObjeto objeto) => Negado();
+        public void Remover(IObjeto o) => Negado();
         private void Negado() => Console.WriteLine("Não permitido");
         public override string ToString() => string.Format($"{new String(' ', this.Nivel)}{this.Nome} [{this.Bytes.ToString()} bytes]");
         public override bool EstruturaFilhos() => false;
+
+        public override void SubMenu()
+        {
+            do
+            {
+                //Montar aqui
+                Escolher();
+                if (Opcao1) { }
+                if (Opcao2) { }
+                if (Opcao3) { }
+                if (Opcao4) { }
+
+
+                Linha('=');
+                Destaque(Centralizado("SISTEMA DE RESERVA DE SALAS"));
+                Linha('=');
+                Numeracao(new List<string> { "Reservas", "Funcionários", "Relatórios" }, Dir.H);
+                Linha('-');
+                Imprimir(Justificado(new List<string> { " ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
+                Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
+                Linha('-');
+
+                //if (Objeto.Itens.First != null) { MostrarConteudo(); }
+                //else { Imprimir(Objeto.ToString()); }
+
+                //RenderizarCarrinho(acao.Key, navegou, removeu);
+                Console.WriteLine("Escolha uma ação");
+                acao = Console.ReadKey(false);
+            }
+            while (acao.Key != ConsoleKey.Escape);
+
+            Console.ReadKey();
+        }
+
     }
 }

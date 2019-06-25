@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,5 +36,20 @@ namespace POO2.Trabalho2.SistemaReservas
         public void Dispose() => this.Dispose();
         public void AdicionaItem(object item) => Itens.AddLast(item);
         public void RemoveItem(object item) => Itens.Remove(item);
+
+        #region IMenu
+        public ConsoleKeyInfo Acao { get; set; }
+        public bool Navegou { get; set; }
+        public bool Abriu { get; set; }
+        public bool Voltou { get; set; }
+        public bool Removeu { get; set; }
+        public bool Saiu { get; set; }
+        public bool Opcao1 { get; set; }
+        public bool Opcao2 { get; set; }
+        public bool Opcao3 { get; set; }
+        public bool Opcao4 { get; set; }
+        public abstract void SubMenu();
+        public abstract void Escolher();
+        #endregion
     }
 }

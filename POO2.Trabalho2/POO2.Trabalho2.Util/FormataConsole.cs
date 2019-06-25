@@ -60,13 +60,15 @@ namespace POO2.Trabalho2.Util
                 {
                     case Dir.V:
                         Console.Write(string.Format($"{(i++).ToString()}."));
-                        Imprimir(item);
+                        Imprimir(item.ToUpper());
                         break;
                     case Dir.H:
                         Console.Write(string.Format($"{(i++).ToString()}."));
                         Console.ResetColor();
-                        if (i <= itens.Count + 1)
-                            Console.Write(string.Format($"{item}{new String(' ', espacamento)}"));
+                        if (i <= itens.Count)
+                            Console.Write(string.Format($"{item.ToUpper()}{new String(' ', espacamento)}"));
+                        else if (i <= itens.Count + 1)
+                            Console.WriteLine(string.Format($"{item.ToUpper()}{new String(' ', espacamento)}"));
                         break;
                 }
             }

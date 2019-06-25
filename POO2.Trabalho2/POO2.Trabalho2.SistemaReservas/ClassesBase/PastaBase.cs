@@ -16,13 +16,12 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
     {
         public override int Bytes { get { return Conteudo.Sum(x => x.Bytes); } }
         public override TipoObjeto Tipo { get { return TipoObjeto.Pasta; } }
-        public override IObjeto<TTipo> Pai { get; set; }
+        public override IObjeto Pai { get; set; }
         public override Cor Cor { get { return Cor.Am; } set { } }
-        public override Menu<TTipo> Menu { get { return new Menu<TTipo>(this, "Pasta"); } set { } }
-        public ICollection<IObjeto<TTipo>> Conteudo = new List<IObjeto<TTipo>>();
+        public ICollection<IObjeto> Conteudo = new List<IObjeto>();
         public static int teste { get; set; } = 0;
         public PastaBase(string nome) { Nome = nome; Nivel += 3; Itens.AddLast(this); }
-        public override void Adicionar(IObjeto<TTipo> objeto)
+        public override void Adicionar(IObjeto objeto)
         {
             objeto.Nivel = Nivel + 3;
             objeto.Pai = this;
@@ -31,19 +30,19 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         }
         public void RemoverArquivoPorNome(string nomeArquivo)
         {
-            IObjeto<TTipo> arquivo = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.Nome.Equals(nomeArquivo));
+            IObjeto arquivo = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.Nome.Equals(nomeArquivo));
             if (arquivo != null)
                 Conteudo.Remove(arquivo);
         }
         public void RemoverArquivoPorCaminho(string pathVirtual)
         {
-            IObjeto<TTipo> objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
+            IObjeto objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
             if (objeto != null)
                 Conteudo.Remove(objeto);
         }
         public void LocalizarArquivoPorNome(string nomeArquivo)
         {
-            IObjeto<TTipo> arquivo = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.Nome.Equals(nomeArquivo));
+            IObjeto arquivo = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.Nome.Equals(nomeArquivo));
             if (arquivo != null)
                 Conteudo.Remove(arquivo);
             else
@@ -51,16 +50,16 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         }
         public void LocalizarArquivoPorCaminho(string pathVirtual)
         {
-            IObjeto<TTipo> objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
+            IObjeto objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
             if (objeto != null)
                 AbrirArquivo(objeto);
             else
                 InformarNaoLocalizado();
         }
-        private void AbrirArquivo(IObjeto<TTipo> objeto) => Console.WriteLine(ConverterEmArquivo(objeto).Conteudo);
+        private void AbrirArquivo(IObjeto objeto) => Console.WriteLine(ConverterEmArquivo(objeto).Conteudo);
         public void SelecionarPorPath(string pathVirtual)
         {
-            IObjeto<TTipo> objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
+            IObjeto objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
             if (objeto != null)
                 AbrirArquivo(objeto);
             else
@@ -86,6 +85,11 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 return true;
             }
             catch (Exception) { return false; }
+        }
+
+        public override void SubMenu()
+        {
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
-    public interface IIterator<TTipo> : IDisposable
+    public interface IIterator<TTipo> : IMenu, IDisposable
     {
         LinkedList<object> Itens { get; set; }
         object Current { get; set; }

@@ -19,27 +19,22 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 Console.WriteLine(reserva.ToString());
             Console.WriteLine("Relatório gerado com sucesso!");
         }
-
         public override void GerarRelatorio()
         {
             MontarRelatorio(Reserva.Reservas);
         }
-
         public override void GerarRelatorio(Sala sala)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Sala == sala));
         }
-
         public override void GerarRelatorio(DateTime data)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data));
         }
-
         public override void GerarRelatorio(DateTime data, Sala sala)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data && x.Sala == sala));
         }
-
         public override bool Equals(object obj)
         {
             try

@@ -26,8 +26,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 return retorno.ToString();
             }
         }
-        public override Menu<Reserva> Menu { get { return new Menu<Reserva>(this, "Reservas"); } set { } }
-
         public Reserva(Funcionario funcionario, Sala sala, DateTime data, Horario horario)
         {
             Id = ProximoId;
@@ -38,9 +36,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Lista.Add(this);
             Reservas.Add(this);
         }
-
         public override Reserva SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
-
         public override bool Equals(object obj)
         {
             try
@@ -51,6 +47,10 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             {
                 return false;
             }
+
+        }
+        public override void SubMenu()
+        {
 
         }
     }

@@ -50,7 +50,7 @@
     <Compile Include="Dominio\Funcao.cs" />
     <Compile Include="Dominio\Funcionario.cs" />
     <Compile Include="Dominio\Horario.cs" />
-    <Compile Include="Dominio\Menu.cs" />
+    <Compile Include="Dominio\MenuHelper.cs" />
     <Compile Include="Dominio\RelatorioReservasArquivo.cs" />
     <Compile Include="Dominio\RelatorioReservasConsole.cs" />
     <Compile Include="Dominio\Reserva.cs" />

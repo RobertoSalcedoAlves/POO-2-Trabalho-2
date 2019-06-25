@@ -22,7 +22,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
         }
 
-        public override Menu<Horario> Menu { get { return new Menu<Horario>(this, "Horários"); } set { } }
 
         public Horario(TimeSpan horaInicio, TimeSpan horaFim)
         {
@@ -44,6 +43,11 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             {
                 return false;
             }
+
+        }
+
+        public override void SubMenu()
+        {
 
         }
     }

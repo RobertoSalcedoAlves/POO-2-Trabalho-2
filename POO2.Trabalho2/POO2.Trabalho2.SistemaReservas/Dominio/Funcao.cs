@@ -15,7 +15,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override string Descricao {
             get { return string.Format($"Funcão: {this.Nome}"); }
         }
-        public override Menu<Funcao> Menu { get { return new Menu<Funcao>(this,"Funções"); } set { } }
 
         public Funcao(string nome)
         {
@@ -36,6 +35,10 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             {
                 return false;
             }
+
+        }
+        public override void SubMenu()
+        {
 
         }
     }
