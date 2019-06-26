@@ -5,6 +5,7 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
     public interface IObjeto
     {
+        int Id { get; }
         string Nome { get; set; }
         int Nivel { get; set; }
         int Bytes { get; }
@@ -13,6 +14,7 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         IObjeto Pai { get; set; }
         void Adicionar(IObjeto filho);
         bool EstruturaFilhos();
+        string PegarPath(IObjeto objeto, string pathVirtual);
         Cor Cor { get; set; }
     }
     public enum TipoObjeto { Arquivo, Pasta }

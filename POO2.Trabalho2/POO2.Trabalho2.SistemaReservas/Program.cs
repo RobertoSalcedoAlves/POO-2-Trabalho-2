@@ -12,7 +12,7 @@ using POO2.Trabalho2.Util;
 namespace POO2.Trabalho2.SistemaReservas
 {
     class Program
-    {        
+    {
         static void Main(string[] args)
         {
             MenuHelper.Rodar();

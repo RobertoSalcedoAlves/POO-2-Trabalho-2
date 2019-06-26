@@ -18,7 +18,7 @@ namespace POO2.Trabalho2.Util
         private static List<Funcionario> Funcionarios = new List<Funcionario>();
         private static List<Reserva> Reservas = new List<Reserva>();
         private static FactoryLog factoryRelatorio = new FactoryLog();
-        public static Pasta PastaRaiz = new Pasta("Raiz");
+        public static Pasta Raiz = new Pasta("Raiz");
 
         static ConsoleKeyInfo Acao { get; set; }
         static bool Navegou, Abriu, Voltou, Removeu, Saiu, Opcao1, Opcao2, Opcao3, Opcao4;
@@ -35,16 +35,18 @@ namespace POO2.Trabalho2.Util
         }
         private static void CriarPastasEArquivos()
         {
-            PastaRaiz.Pai = PastaRaiz;
-            Pasta pasta = new Pasta("Primeira nível 1");
-            Pasta p2 = new Pasta("Pasta2");
-            pasta.Adicionar(p2);
-            pasta.Adicionar(new Pasta("Pasta3"));
-            p2.Adicionar(new Arquivo("Arquivo teste", "Conteúdo de testes"));
-            p2.Adicionar(new Arquivo("Arquivo teste2", "Conteúdo de testes adfasdfasdf"));
+            Raiz.Pai = Raiz;
+            Pasta p1 = new Pasta("Primeira Pasta");
+            Pasta p2 = new Pasta("Segunda Pasta");
+            Pasta p3 = new Pasta("Terceira Pasta");
 
-            PastaRaiz.Adicionar(pasta);
-            //PastaRaiz.Estrutura();
+            Raiz.Adicionar(p1);
+            p1.Adicionar(p2);
+            p2.Adicionar(p3);
+            p2.Adicionar(new Pasta("Quarta Pasta"));
+            p3.Adicionar(new Arquivo("Primeiro Arquivo", "Conteúdo de testes"));
+            p3.Adicionar(new Arquivo("Segundo Arquivo", "Conteúdo de testes adfasdfasdf"));
+
         }
         private static void CriarSalas()
         {
@@ -125,7 +127,7 @@ namespace POO2.Trabalho2.Util
                 Opcao3 = Acao.Key == ConsoleKey.NumPad3 ? true : false;
                 Opcao4 = Acao.Key == ConsoleKey.NumPad4 ? true : false;
 
-                if (Opcao3) { PastaRaiz.SubMenu(); }
+                if (Opcao3) { Raiz.SubMenu(); }
                 Acao = Console.ReadKey(false);
             }
             while (Acao.Key != ConsoleKey.Escape);

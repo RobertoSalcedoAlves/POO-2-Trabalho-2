@@ -1,4 +1,5 @@
-﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
+﻿using POO2.Trabalho2.SistemaReservas.Dominio;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.Util;
 using System;
 using System.Collections;
@@ -7,13 +8,22 @@ using System.Linq;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
-    public abstract class Iterator : IIterator
+    public abstract class Iterator<TTipo> : IIterator
+        where TTipo : class
     {
-        public LinkedList<object> Itens { get; set; } = new LinkedList<object>();
+        public Iterator(Funcao funcao, string nome, string email, int ramal, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(string nome, string conteudo, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(string nome, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(TimeSpan horaInicio, TimeSpan horaFim, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(DateTime data, Sala sala, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(DateTime data, LinkedList<TTipo> _itens) { Itens = _itens; }
+        public Iterator(Sala sala, LinkedList<TTipo> _itens) { Itens = _itens; }
+
+        public LinkedList<TTipo> Itens { get; set; } = new LinkedList<TTipo>();
         public int indice { get; set; }
         public void Reset() => indice = 0;
         public object Current { get { return PegaItem(indice); } set { } }
-        public bool EhUltimo() => indice == PegaNumeroItems() - 1 ? true : false;
+        public bool EhUltimo() => indice == PegaNumeroItems() ? true : false;
         public bool EhPrimeiro() => indice == 0 ? true : false;
         public bool MoveNext()
         {
@@ -34,8 +44,8 @@ namespace POO2.Trabalho2.SistemaReservas
             return Itens.ElementAt(index);
         }
         public void Dispose() => this.Dispose();
-        public void AdicionaItem(object item) => Itens.AddLast(item);
-        public void RemoveItem(object item) => Itens.Remove(item);
+        public void AdicionaItem(TTipo item) => Itens.AddLast(item);
+        public void RemoveItem(TTipo item) => Itens.Remove(item);
 
         #region IMenu
         public ConsoleKeyInfo Acao { get; set; }
@@ -66,7 +76,7 @@ namespace POO2.Trabalho2.SistemaReservas
             Opcao5 = Acao.Key == ConsoleKey.NumPad5 ? true : false;
             Opcao6 = Acao.Key == ConsoleKey.NumPad6 ? true : false;
         }
-        public void Navegar(ConsoleKeyInfo acao, Iterator item)
+        public void Navegar(ConsoleKeyInfo acao, Iterator<IMenu> item)
         {
             if (acao.Key == ConsoleKey.UpArrow)
                 item.MoveBefore();

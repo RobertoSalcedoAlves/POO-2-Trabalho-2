@@ -15,13 +15,42 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public override IObjeto Pai { get; set; }
         public override Cor Cor { get { return Cor.Am; } set { } }
         public ICollection<IObjeto> Conteudo = new List<IObjeto>();
-        public PastaBase(string nome) { Nome = nome; Nivel += 3; Itens.AddLast(this); }
+
+        //public PastaBase(LinkedList<IObjeto> _itens) : base(_itens) { }
+
+        public PastaBase(string nome, string conteudo, LinkedList<IObjeto> _itens) : base(nome, conteudo, _itens)
+        {
+            Id = ProximoId;
+            Nome = nome;
+            Nivel += 3;
+            //Itens.AddLast(this);
+        }
         public override void Adicionar(IObjeto filho)
         {
             filho.Nivel = Nivel + 3;
             filho.Pai = this;
-            filho.PathVirtual = this.Nome + "\\" + filho.PathVirtual;
             this.Conteudo.Add(filho);
+        }
+        public bool SelecionarArquivoPorPath(Pasta pasta, string path)
+        {
+            List<string> nohs = path.Replace('/', '\\').Split('\\').ToList();
+            string nomeArquivo = nohs.Last();
+            string nomePai = nohs.ElementAt(nohs.Count - 2);
+            Arquivo arquivo =
+                (Arquivo)(pasta.Conteudo.FirstOrDefault(
+                x => x.Tipo == TipoObjeto.Arquivo &&
+                x.Nome == nomeArquivo &&
+                x.Pai.Nome == nomePai));
+            if (arquivo != null) { Campo("Arquivo"); Mostrar(arquivo.ToString()); AbrirArquivo(arquivo); return true; }
+            else
+            {
+                foreach (var noh in pasta.Conteudo)
+                {
+                    if (noh.Tipo == TipoObjeto.Pasta)
+                        SelecionarArquivoPorPath((Pasta)noh, path);
+                }
+                return false;
+            }
         }
         public bool RemoverArquivoPorNome(Pasta pasta, string nomeArquivo)
         {
@@ -45,7 +74,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         {
             foreach (var noh in pasta.Conteudo)
             {
-                if (noh.Tipo == TipoObjeto.Arquivo && noh.Nome.ToUpper().Equals(nomeArquivo.ToUpper())) { Campo("Conteúdo", Cor.Vd); AbrirArquivo(noh); return true; }
+                if (noh.Tipo == TipoObjeto.Arquivo && noh.Nome.ToUpper().Equals(nomeArquivo.ToUpper())) { Campo("Conteúdo"); AbrirArquivo(noh); return true; }
                 if (noh.Tipo == TipoObjeto.Pasta) { ((Pasta)noh).LocalizarArquivoPorNome((Pasta)noh, nomeArquivo); }
             }
             return false;
@@ -54,23 +83,30 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         {
             foreach (var noh in pasta.Conteudo)
             {
+                var teste = noh.PathVirtual;
                 if (noh.Tipo == TipoObjeto.Arquivo && noh.PathVirtual.Replace('/', '\\').Equals(pathVirtual)) { Current = noh; Estrutura(); }
                 if (noh.Tipo == TipoObjeto.Pasta) { ((Pasta)noh).LocalizarArquivoPorCaminho((Pasta)noh, pathVirtual); }
             }
             return false;
         }
-        private void AbrirArquivo(IObjeto objeto) => Console.WriteLine(ConverterEmArquivo(objeto).Conteudo);
+        private void AbrirArquivo(IObjeto objeto) => Console.WriteLine(Converter<Arquivo>(objeto).Conteudo);
         public bool SelecionarPorPath(string pathVirtual)
         {
-            IObjeto objeto = Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
+            IObjeto objeto = MenuHelper.Raiz.Conteudo.First(x => x.Tipo == TipoObjeto.Arquivo && x.PathVirtual.Replace('/', '\\').Equals(pathVirtual));
             if (objeto != null) { AbrirArquivo(objeto); return true; }
             InformarNaoLocalizado(); return false;
         }
         private void InformarNaoLocalizado() => Aviso("Arquivo não localizado");
         public override string ToString() => string.Format($"{ new String(' ', this.Nivel)}{this.Nome} [{Bytes.ToString()} bytes]");
+        public override bool Equals(object obj)
+        {
+            try { return ((Pasta)obj).Id == this.Id; }
+            catch (Exception) { return false; }
+        }
         public bool Estrutura()
         {
-            Imprimir(this.ToString(), this.Cor);
+            Current = this;
+            Selecionar(this.ToString());
             try { this.EstruturaFilhos(); return true; }
             catch (Exception) { return false; }
         }
@@ -80,7 +116,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             {
                 foreach (var noh in this.Conteudo)
                 {
-                    if (noh.Equals((Pasta)Current)) { Selecionar(noh.ToString()); }
+                    if (noh.Equals(Current)) { Selecionar(noh.ToString()); }
                     else { Imprimir(noh.ToString(), noh.Cor); }
                     noh.EstruturaFilhos();
                 }
@@ -105,18 +141,19 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 if (Opcao2)
                 {
                     if (!string.IsNullOrEmpty(informado))
-                    { RemoverArquivoPorNome(MenuHelper.PastaRaiz, informado); }
+                    { RemoverArquivoPorNome(MenuHelper.Raiz, informado); }
                     else { Aviso("Selecione um arquivo primeiro!"); }
                 }
                 if (Opcao3)
                 {
                     Campo("Digite o nome do arquivo"); informado = Console.ReadLine();
-                    LocalizarArquivoPorNome(MenuHelper.PastaRaiz, informado);
+                    LocalizarArquivoPorNome(MenuHelper.Raiz, informado);
                 }
                 if (Opcao4)
                 {
                     Campo("Digite o caminho do arquivo"); informado = Console.ReadLine();
-                    LocalizarArquivoPorCaminho(MenuHelper.PastaRaiz, informado);
+                    SelecionarArquivoPorPath(MenuHelper.Raiz, informado);
+                    //LocalizarArquivoPorCaminho(MenuHelper.Raiz, informado);
                 }
                 if (Navegou) { Navegar(Acao, this); Estrutura(); }
                 if (Opcao5) { Estrutura(); }

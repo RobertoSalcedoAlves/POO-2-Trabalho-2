@@ -9,14 +9,16 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class ArquivoBase : ObjetoBase
     {
-        public ArquivoBase(string nome, string conteudo = "")
+        public ArquivoBase(string nome, string conteudo, LinkedList<IObjeto> _itens) : base(nome, conteudo, _itens)
         {
+            Id = ProximoId;
             Nivel = 3;
             Nome = nome;
             Bytes = System.Text.ASCIIEncoding.ASCII.GetByteCount(conteudo);
             Conteudo = conteudo;
-            Itens.AddLast(this);
+            //Itens.AddLast(this);
         }
+        //public ArquivoBase(string nome, LinkedList<IObjeto> _itens) : base(nome, _itens) { }
         public string Conteudo { get; set; }
         public override int Bytes { get; }
         public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
@@ -26,8 +28,12 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public void Remover(IObjeto o) => Negado();
         private void Negado() => Console.WriteLine("Não permitido");
         public override string ToString() => string.Format($"{new String(' ', this.Nivel)}{this.Nome} [{this.Bytes.ToString()} bytes]");
+        public override bool Equals(object obj)
+        {
+            try { return ((Arquivo)obj).Id == this.Id; }
+            catch (Exception) { return false; }
+        }
         public override bool EstruturaFilhos() => false;
-
         public override void SubMenu()
         {
             do
@@ -35,19 +41,19 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 Console.Clear();
                 Titulo2("OPÇÕES DE ARQUIVOS");
                 Linha('-');
-                Numeracao(new List<string> { "Acessar", "Excluir", "Localizar Por Nome", "Localizar Por Caminho"}, Dir.H);
+                Numeracao(new List<string> { "Acessar", "Excluir", "Localizar Por Nome", "Localizar Por Caminho" }, Dir.H);
                 Instrucao("Use as setas Up e Down para navegar pelos itens");
                 Linha('-');
                 Escolher();
                 if (Opcao1) { MenuHelper.Abrir(Current); }
                 if (Opcao2) { MenuHelper.Remover(this); } //((Pasta)Pai).RemoveItem(this); }
-                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorNome(MenuHelper.PastaRaiz, Console.ReadLine()); }
-                if (Opcao4) { Imprimir("Digite o caminho do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorCaminho(MenuHelper.PastaRaiz, Console.ReadLine()); }
+                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorNome(MenuHelper.Raiz, Console.ReadLine()); }
+                if (Opcao4) { Imprimir("Digite o caminho do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorCaminho(MenuHelper.Raiz, Console.ReadLine()); }
                 if (Navegou) { Navegar(Acao, this); }
-                foreach(var item in Itens) { if (item.Equals(Current)) { Selecionar(item.ToString()); } Imprimir(item.ToString()); }
+                foreach (var item in Itens) { if (item.Equals(Current)) { Selecionar(item.ToString()); } Imprimir(item.ToString()); }
                 Acao = Console.ReadKey(false);
             }
-            while (! Saiu);
+            while (!Saiu);
             Console.ReadKey();
         }
 

@@ -10,14 +10,16 @@ namespace POO2.Trabalho2.Util
     {
         private const int ln = 80;
 
-        public static void Imprimir(string conteudo, Cor texto = Cor.Bc, Cor fundo = Cor.Pt)
+        public static void Imprimir(string conteudo, Cor texto = Cor.Bc, Cor fundo = Cor.Pt, bool leftAlign = false)
         {
             Console.BackgroundColor = Txt(fundo);
             Console.ForegroundColor = Txt(texto);
+            if (leftAlign) { conteudo = conteudo.TrimStart(); conteudo = conteudo.TrimEnd(); }
             Console.WriteLine(conteudo);
             Console.ResetColor();
         }
-        public static void Campo(string conteudo, Cor texto = Cor.Am, Cor fundo = Cor.Pt)
+        public static void Mostrar(string conteudo) { Imprimir(conteudo, Cor.Bc, Cor.Pt, true); }
+        public static void Campo(string conteudo, Cor texto = Cor.Vd, Cor fundo = Cor.Pt)
         {
             Console.BackgroundColor = Txt(fundo);
             Console.ForegroundColor = Txt(texto);
@@ -41,13 +43,11 @@ namespace POO2.Trabalho2.Util
             }
             return saida;
         }
-
         private static int EspacoInterno(List<string> conteudo)
         {
             int divisoes = conteudo.Count - 1;
             return (int)((ln - conteudo.Sum(x => x.Length)) / divisoes); ;
         }
-
         public static void Numeracao(List<string> itens, Dir direcao = Dir.V)
         {
             int i = 1, espacamento;
@@ -79,14 +79,12 @@ namespace POO2.Trabalho2.Util
                 }
             }
         }
-
         public static void Selecionar(string conteudo, Cor corFonte = Cor.Az, Cor corFundo = Cor.Am) => Imprimir(conteudo, corFonte, corFundo);
         public static void Aviso(string conteudo) => Imprimir(conteudo, Cor.Vm);
         public static void Destaque(string conteudo, Cor corFonte = Cor.PdTxt, Cor corFundo = Cor.PdFnd) => Imprimir(conteudo, corFonte, corFundo);
         public static void Titulo1(string conteudo = "SISTEMA DE RESERVA DE SALAS") { Linha(); Destaque(Centralizado(conteudo), Cor.Az, Cor.Bc); Linha(); }
         public static void Titulo2(string conteudo) => Destaque(Centralizado(conteudo), Cor.Pt, Cor.Cz);
         public static void Instrucao(string conteudo) => Destaque(Centralizado(conteudo), Cor.Am);
-
         private static ConsoleColor Txt(Cor cor)
         {
             switch (cor)
@@ -104,7 +102,6 @@ namespace POO2.Trabalho2.Util
                 default: return ConsoleColor.White;
             }
         }
-
         public enum Cor { Am, Az, Bc, Cz, Pt, Rs, Vd, Vm, PdFnd, PdTxt }
         public enum Dir { H, V }
     }
