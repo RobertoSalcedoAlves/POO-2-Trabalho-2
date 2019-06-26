@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                     $"às {Fim.Hours.ToString()}:{Fim.Minutes.ToString()}");
             }
         }
-
-
         public Horario(TimeSpan horaInicio, TimeSpan horaFim)
         {
             Id = ProximoId;
@@ -30,9 +29,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Fim = horaFim;
             Lista.Add(this);
         }
-
         public override Horario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
-
         public override bool Equals(object obj)
         {
             try
@@ -45,7 +42,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
 
         }
-
         public override void SubMenu()
         {
 

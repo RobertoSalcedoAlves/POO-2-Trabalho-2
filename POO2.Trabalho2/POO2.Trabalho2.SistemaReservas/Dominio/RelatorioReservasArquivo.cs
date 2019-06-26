@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,12 +12,10 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         const string NOME_ARQUIVO = @"\Relatório.txt";
         public string Path { get; set; }
         protected override int ProximoId { get { return Lista.Count + 1; } }
-
         public RelatorioReservasArquivo(DateTime data, Sala sala) : base(data, sala) { Id = ProximoId; }
         public RelatorioReservasArquivo(DateTime data) : base(data) { Id = ProximoId; }
         public RelatorioReservasArquivo(Sala sala) : base(sala) { Id = ProximoId; }
         public RelatorioReservasArquivo() { }
-
         public override void MontarRelatorio(IEnumerable<Reserva> reservas)
         {
             Console.Write("informe o diretório: ");
@@ -37,27 +36,22 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
             Console.WriteLine("Relatório gerado em: " + Path.ToString());
         }
-
         public override void GerarRelatorio()
         {
             MontarRelatorio(Reserva.Reservas); ;
         }
-
         public override void GerarRelatorio(Sala sala)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Sala == sala));
         }
-
         public override void GerarRelatorio(DateTime data)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data));
         }
-
         public override void GerarRelatorio(DateTime data, Sala sala)
         {
             MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data && x.Sala == sala));
         }
-
         public override bool Equals(object obj)
         {
             try

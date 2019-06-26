@@ -17,8 +17,14 @@ namespace POO2.Trabalho2.Util
             Console.WriteLine(conteudo);
             Console.ResetColor();
         }
-
-        public static void Linha(char caractere) => Imprimir(new String(caractere, ln));
+        public static void Campo(string conteudo, Cor texto = Cor.Am, Cor fundo = Cor.Pt)
+        {
+            Console.BackgroundColor = Txt(fundo);
+            Console.ForegroundColor = Txt(texto);
+            Console.Write(conteudo + ": ");
+            Console.ResetColor();
+        }
+        public static void Linha(char caractere = ' ') => Imprimir(new String(caractere, ln));
         public static string Centralizado(string conteudo)
         {
             int margem = (int)((ln - conteudo.Length) / 2);
@@ -74,12 +80,12 @@ namespace POO2.Trabalho2.Util
             }
         }
 
-        public static void Selecionar(string conteudo) => Imprimir(conteudo, Cor.Az, Cor.Am);
+        public static void Selecionar(string conteudo, Cor corFonte = Cor.Az, Cor corFundo = Cor.Am) => Imprimir(conteudo, corFonte, corFundo);
         public static void Aviso(string conteudo) => Imprimir(conteudo, Cor.Vm);
-        public static void Destaque(string conteudo, Cor cor) => Imprimir(conteudo, cor);
-
-        public static void Titulo1(string conteudo) => Destaque(Centralizado(conteudo), Cor.Vd);
-        public static void Titulo2(string conteudo) => Destaque(Centralizado(conteudo), Cor.Am);
+        public static void Destaque(string conteudo, Cor corFonte = Cor.PdTxt, Cor corFundo = Cor.PdFnd) => Imprimir(conteudo, corFonte, corFundo);
+        public static void Titulo1(string conteudo = "SISTEMA DE RESERVA DE SALAS") { Linha(); Destaque(Centralizado(conteudo), Cor.Az, Cor.Bc); Linha(); }
+        public static void Titulo2(string conteudo) => Destaque(Centralizado(conteudo), Cor.Pt, Cor.Cz);
+        public static void Instrucao(string conteudo) => Destaque(Centralizado(conteudo), Cor.Am);
 
         private static ConsoleColor Txt(Cor cor)
         {

@@ -23,8 +23,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); Itens.AddLast(this); }
         public RelatorioBase(DateTime data) { GerarRelatorio(data); Itens.AddLast(this); }
         public RelatorioBase(Sala sala) { GerarRelatorio(sala); Itens.AddLast(this); }
-        public RelatorioBase() { GerarRelatorio(); }        
-
+        public RelatorioBase() { GerarRelatorio(); }
         public override RelatorioBase SelecionarPorId(int id) => Lista.Find(x => x.Id == id);      
         public abstract void MontarRelatorio(IEnumerable<Reserva> reservas);
         public abstract void GerarRelatorio();

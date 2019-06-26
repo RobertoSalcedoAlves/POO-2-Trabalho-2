@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
@@ -15,16 +16,13 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override string Descricao {
             get { return string.Format($"Funcão: {this.Nome}"); }
         }
-
         public Funcao(string nome)
         {
             Id = ProximoId;
             Nome = nome; Lista.Add(this);
             Lista.Add(this);
         }
-
         public override Funcao SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
-
         public override bool Equals(object obj)
         {
             try

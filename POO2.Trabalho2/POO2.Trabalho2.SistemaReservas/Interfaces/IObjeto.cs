@@ -11,7 +11,7 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         string PathVirtual { get; set; }
         TipoObjeto Tipo { get; }
         IObjeto Pai { get; set; }
-        void Adicionar(IObjeto objeto);
+        void Adicionar(IObjeto filho);
         bool EstruturaFilhos();
         Cor Cor { get; set; }
     }

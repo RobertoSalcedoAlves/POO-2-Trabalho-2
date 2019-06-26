@@ -3,11 +3,11 @@ using System;
 using static POO2.Trabalho2.Util.FormataConsole;
 using POO2.Trabalho2.Util;
 using System.Collections.Generic;
+using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
-    public abstract class ArquivoBase<TTipo> : ObjetoBase<TTipo>
-        where TTipo : class
+    public abstract class ArquivoBase : ObjetoBase
     {
         public ArquivoBase(string nome, string conteudo = "")
         {
@@ -21,7 +21,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public override int Bytes { get; }
         public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
         public override IObjeto Pai { get; set; }
-        public override Cor Cor { get { return Cor.Az; } set { } }
+        public override Cor Cor { get { return Cor.Vd; } set { } }
         public override void Adicionar(IObjeto objeto) => Negado();
         public void Remover(IObjeto o) => Negado();
         private void Negado() => Console.WriteLine("Não permitido");
@@ -32,33 +32,22 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         {
             do
             {
+                Console.Clear();
                 Titulo2("OPÇÕES DE ARQUIVOS");
-
+                Linha('-');
+                Numeracao(new List<string> { "Acessar", "Excluir", "Localizar Por Nome", "Localizar Por Caminho"}, Dir.H);
+                Instrucao("Use as setas Up e Down para navegar pelos itens");
+                Linha('-');
                 Escolher();
-                if (Opcao1) { }
-                if (Opcao2) { }
-                if (Opcao3) { }
-                if (Opcao4) { }
-
-
-                Linha('=');
-                
-                Linha('=');
-                Numeracao(new List<string> { "Novo", "Localizar", "Excluir" }, Dir.H);
-                Linha('-');
-                Imprimir(Justificado(new List<string> { " ESC: sair", "ENTER:  acessar item", "SETA ESQUERDA: menu anterior" }));
-                Imprimir(Centralizado("Use as setas Up e Down para navegar pelos itens"));
-                Linha('-');
-
-                //if (Objeto.Itens.First != null) { MostrarConteudo(); }
-                //else { Imprimir(Objeto.ToString()); }
-
-                //RenderizarCarrinho(acao.Key, navegou, removeu);
-                Console.WriteLine("Escolha uma ação");
+                if (Opcao1) { MenuHelper.Abrir(Current); }
+                if (Opcao2) { MenuHelper.Remover(this); } //((Pasta)Pai).RemoveItem(this); }
+                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorNome(MenuHelper.PastaRaiz, Console.ReadLine()); }
+                if (Opcao4) { Imprimir("Digite o caminho do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorCaminho(MenuHelper.PastaRaiz, Console.ReadLine()); }
+                if (Navegou) { Navegar(Acao, this); }
+                foreach(var item in Itens) { if (item.Equals(Current)) { Selecionar(item.ToString()); } Imprimir(item.ToString()); }
                 Acao = Console.ReadKey(false);
             }
-            while (Acao.Key != ConsoleKey.Escape);
-
+            while (! Saiu);
             Console.ReadKey();
         }
 

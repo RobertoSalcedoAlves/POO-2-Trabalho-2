@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
-    public interface IIterator<TTipo> : IMenu, IDisposable
+    public interface IIterator : IMenu, IDisposable
     {
         LinkedList<object> Itens { get; set; }
         object Current { get; set; }
@@ -20,5 +20,6 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         void Reset();
         void AdicionaItem(object item);
         void RemoveItem(object item);
+        void Navegar(ConsoleKeyInfo acao, Iterator item);
     }
 }

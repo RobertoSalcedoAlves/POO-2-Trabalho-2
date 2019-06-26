@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.Util;
 using System;
 using System.Text;
@@ -22,7 +23,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 return retorno.ToString();
             }
         }
-
         public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
             Id = ProximoId;
@@ -32,9 +32,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Ramal = ramal;
             Lista.Add(this);
         }
-
         public override Funcionario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
-
         public override bool Equals(object obj)
         {
             try
@@ -47,7 +45,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
 
         }
-
         public override void SubMenu()
         {
 

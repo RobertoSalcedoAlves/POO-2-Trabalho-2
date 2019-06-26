@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,13 +7,12 @@ using System.Linq;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
-    public abstract class Iterator<TTipo> : IIterator<TTipo>
-        where TTipo : class
+    public abstract class Iterator : IIterator
     {
         public LinkedList<object> Itens { get; set; } = new LinkedList<object>();
         public int indice { get; set; }
         public void Reset() => indice = 0;
-        object IIterator<TTipo>.Current { get { return PegaItem(indice); } set {} }
+        public object Current { get { return PegaItem(indice); } set { } }
         public bool EhUltimo() => indice == PegaNumeroItems() - 1 ? true : false;
         public bool EhPrimeiro() => indice == 0 ? true : false;
         public bool MoveNext()
@@ -48,8 +48,31 @@ namespace POO2.Trabalho2.SistemaReservas
         public bool Opcao2 { get; set; }
         public bool Opcao3 { get; set; }
         public bool Opcao4 { get; set; }
+        public bool Opcao5 { get; set; }
+        public bool Opcao6 { get; set; }
         public abstract void SubMenu();
-        public abstract void Escolher();
+        public void Escolher()
+        {
+            Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = false;
+            Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
+            Abriu = Acao.Key == ConsoleKey.Enter ? true : false;
+            Removeu = Acao.Key == ConsoleKey.Delete ? true : false;
+            Voltou = Acao.Key == ConsoleKey.LeftArrow ? true : false;
+            Saiu = Acao.Key == ConsoleKey.Escape ? true : false;
+            Opcao1 = Acao.Key == ConsoleKey.NumPad1 ? true : false;
+            Opcao2 = Acao.Key == ConsoleKey.NumPad2 ? true : false;
+            Opcao3 = Acao.Key == ConsoleKey.NumPad3 ? true : false;
+            Opcao4 = Acao.Key == ConsoleKey.NumPad4 ? true : false;
+            Opcao5 = Acao.Key == ConsoleKey.NumPad5 ? true : false;
+            Opcao6 = Acao.Key == ConsoleKey.NumPad6 ? true : false;
+        }
+        public void Navegar(ConsoleKeyInfo acao, Iterator item)
+        {
+            if (acao.Key == ConsoleKey.UpArrow)
+                item.MoveBefore();
+            else if (acao.Key == ConsoleKey.DownArrow)
+                item.MoveNext();
+        }
         #endregion
     }
 }

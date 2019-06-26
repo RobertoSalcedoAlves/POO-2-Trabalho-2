@@ -12,7 +12,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public RelatorioReservasConsole(DateTime data) : base(data) { Id = ProximoId; }
         public RelatorioReservasConsole(Sala sala) : base(sala) { Id = ProximoId; }
         public RelatorioReservasConsole() { }
-
         public override void MontarRelatorio(IEnumerable<Reserva> reservas)
         {
             foreach (var reserva in reservas)
