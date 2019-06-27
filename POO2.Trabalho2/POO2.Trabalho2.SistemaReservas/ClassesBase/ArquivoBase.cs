@@ -46,9 +46,9 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 Escolher();
                 if (Opcao1) { MenuHelper.Abrir(Current); }
                 if (Opcao2) { RemoveItem(this); } //((Pasta)Pai).RemoveItem(this); }
-                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorNome(MenuHelper.Raiz, Console.ReadLine()); }
+                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).SelecionarArquivoPorNome(MenuHelper.Raiz, Console.ReadLine()); }
                 if (Opcao4) { Imprimir("Digite o caminho do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorCaminho(MenuHelper.Raiz, Console.ReadLine()); }
-                if (Navegou) { Navegar(Acao, this); }
+                if (Navegou) { Navegar(Acao); }
                 foreach (var item in Itens) { if (item.Equals(Current)) { Selecionar(item.ToString()); } Imprimir(item.ToString()); }
                 Acao = Console.ReadKey(false);
             }

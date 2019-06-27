@@ -54,6 +54,7 @@ namespace POO2.Trabalho2.SistemaReservas
         public bool Voltou { get; set; }
         public bool Removeu { get; set; }
         public bool Saiu { get; set; }
+        public bool Ler { get; set; }
         public bool Opcao1 { get; set; }
         public bool Opcao2 { get; set; }
         public bool Opcao3 { get; set; }
@@ -61,27 +62,31 @@ namespace POO2.Trabalho2.SistemaReservas
         public bool Opcao5 { get; set; }
         public bool Opcao6 { get; set; }
         public abstract void SubMenu();
-        public void Escolher()
+        public void Escolher(bool ler = true)
         {
             Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = false;
-            Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
-            Abriu = Acao.Key == ConsoleKey.Enter ? true : false;
-            Removeu = Acao.Key == ConsoleKey.Delete ? true : false;
-            Voltou = Acao.Key == ConsoleKey.LeftArrow ? true : false;
-            Saiu = Acao.Key == ConsoleKey.Escape ? true : false;
-            Opcao1 = Acao.Key == ConsoleKey.NumPad1 ? true : false;
-            Opcao2 = Acao.Key == ConsoleKey.NumPad2 ? true : false;
-            Opcao3 = Acao.Key == ConsoleKey.NumPad3 ? true : false;
-            Opcao4 = Acao.Key == ConsoleKey.NumPad4 ? true : false;
-            Opcao5 = Acao.Key == ConsoleKey.NumPad5 ? true : false;
-            Opcao6 = Acao.Key == ConsoleKey.NumPad6 ? true : false;
+            if (Ler)
+            {
+                Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
+                Abriu = Acao.Key == ConsoleKey.Enter ? true : false;
+                Removeu = Acao.Key == ConsoleKey.Delete ? true : false;
+                Voltou = Acao.Key == ConsoleKey.LeftArrow ? true : false;
+                Saiu = Acao.Key == ConsoleKey.Escape ? true : false;
+                Opcao1 = Acao.Key == ConsoleKey.NumPad1 ? true : false;
+                Opcao2 = Acao.Key == ConsoleKey.NumPad2 ? true : false;
+                Opcao3 = Acao.Key == ConsoleKey.NumPad3 ? true : false;
+                Opcao4 = Acao.Key == ConsoleKey.NumPad4 ? true : false;
+                Opcao5 = Acao.Key == ConsoleKey.NumPad5 ? true : false;
+                Opcao6 = Acao.Key == ConsoleKey.NumPad6 ? true : false;
+            }
+            Ler = !Ler;
         }
-        public void Navegar(ConsoleKeyInfo acao, Iterator<IObjeto> item)
+        public void Navegar(ConsoleKeyInfo acao)
         {
             if (acao.Key == ConsoleKey.UpArrow)
-                item.MoveBefore();
+                MoveBefore();
             else if (acao.Key == ConsoleKey.DownArrow)
-                item.MoveNext();
+                MoveNext();
         }
         #endregion
     }
