@@ -9,6 +9,10 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class RelatorioBase : ClasseBase<RelatorioBase, int>, IRelatorio
     {
+        public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); }
+        public RelatorioBase(DateTime data) { GerarRelatorio(data); }
+        public RelatorioBase(Sala sala) { GerarRelatorio( sala); }
+        public RelatorioBase( ){ GerarRelatorio(); }
         public override string Descricao {
             get {
                 StringBuilder retorno = new StringBuilder();
@@ -20,11 +24,6 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 return retorno.ToString();
             }
         }
-        public RelatorioBase(DateTime data, Sala sala) { GerarRelatorio(data, sala); Itens.AddLast(this); }
-        public RelatorioBase(DateTime data) { GerarRelatorio(data); Itens.AddLast(this); }
-        public RelatorioBase(Sala sala) { GerarRelatorio(sala); Itens.AddLast(this); }
-        public RelatorioBase() { GerarRelatorio(); }
-
         public override RelatorioBase SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
         public abstract void MontarRelatorio(IEnumerable<Reserva> reservas);
         public abstract void GerarRelatorio();

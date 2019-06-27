@@ -7,6 +7,6 @@ namespace POO2.Trabalho2.SistemaReservas.Padroes.Composite
 {
     public class Arquivo : ArquivoBase
     {
-        public Arquivo(string nome, string conteudo, LinkedList<IObjeto> _itens) : base(nome, conteudo, _itens) { }
+        public Arquivo(string nome, string conteudo) : base(nome, conteudo) { }
     }
 }

@@ -9,13 +9,15 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class RelatorioReservasArquivo : RelatorioBase
     {
+
+
         const string NOME_ARQUIVO = @"\Relatório.txt";
-        public string Path { get; set; }
-        protected override int ProximoId { get { return Lista.Count + 1; } }
-        public RelatorioReservasArquivo(DateTime data, Sala sala) : base(data, sala) { Id = ProximoId; }
-        public RelatorioReservasArquivo(DateTime data) : base(data) { Id = ProximoId; }
-        public RelatorioReservasArquivo(Sala sala) : base(sala) { Id = ProximoId; }
-        public RelatorioReservasArquivo() { }
+
+        public RelatorioReservasArquivo(DateTime data, Sala sala) { Id = ProximoId; }
+        public RelatorioReservasArquivo(DateTime data) { Id = ProximoId; }
+        public RelatorioReservasArquivo(Sala sala) { Id = ProximoId; }
+        public RelatorioReservasArquivo() { Id = ProximoId; }
+        public string Path { get; set; }  
         public override void MontarRelatorio(IEnumerable<Reserva> reservas)
         {
             Console.Write("informe o diretório: ");

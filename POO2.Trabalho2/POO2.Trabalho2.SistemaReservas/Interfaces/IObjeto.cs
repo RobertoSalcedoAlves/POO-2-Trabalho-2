@@ -13,7 +13,7 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         TipoObjeto Tipo { get; }
         IObjeto Pai { get; set; }
         void Adicionar(IObjeto filho);
-        bool EstruturaFilhos();
+        bool OrdenarItens(Pasta pasta);
         string PegarPath(IObjeto objeto, string pathVirtual);
         Cor Cor { get; set; }
     }

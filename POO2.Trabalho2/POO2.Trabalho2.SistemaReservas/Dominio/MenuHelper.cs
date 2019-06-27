@@ -143,36 +143,36 @@ namespace POO2.Trabalho2.Util
             Instrucao("Digite o número da opção desejada");
             Linha('-');
         }
-        public static void SubMenu(IIterator objeto)
-        {
-            do
-            {
-                Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = false;
-                Console.Clear();
-                Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
-                Abriu = Acao.Key == ConsoleKey.Enter ? true : false;
-                Removeu = Acao.Key == ConsoleKey.Delete ? true : false;
-                Voltou = Acao.Key == ConsoleKey.LeftArrow ? true : false;
+        //public static void SubMenu(IIterator objeto)
+        //{
+        //    do
+        //    {
+        //        Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = false;
+        //        Console.Clear();
+        //        Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
+        //        Abriu = Acao.Key == ConsoleKey.Enter ? true : false;
+        //        Removeu = Acao.Key == ConsoleKey.Delete ? true : false;
+        //        Voltou = Acao.Key == ConsoleKey.LeftArrow ? true : false;
 
-                objeto.SubMenu();
-                //objeto;
-                //Imprimir(Centralizado(objeto.));
-                Linha('.');
-                if (Navegou) { Navegar(objeto); }
-                if (Abriu)
-                {
-                    if (objeto.Itens.First != null) { MostrarConteudo(objeto); }
-                    else { Imprimir(objeto.ToString()); }
-                    Linha('.');
-                }
-                if (Removeu) { Remover(objeto); }
-                if (Voltou) { break; }
+        //        objeto.SubMenu();
+        //        //objeto;
+        //        //Imprimir(Centralizado(objeto.));
+        //        Linha('.');
+        //        if (Navegou) { Navegar(objeto); }
+        //        if (Abriu)
+        //        {
+        //            if (objeto.Itens.First != null) { MostrarConteudo(objeto); }
+        //            else { Imprimir(objeto.ToString()); }
+        //            Linha('.');
+        //        }
+        //        if (Removeu) { RemoveItem(objeto); }
+        //        if (Voltou) { break; }
 
-                Console.WriteLine("Escolha uma ação");
-                Acao = Console.ReadKey(false);
-            }
-            while (Acao.Key != ConsoleKey.Escape);
-        }
+        //        Console.WriteLine("Escolha uma ação");
+        //        Acao = Console.ReadKey(false);
+        //    }
+        //    while (Acao.Key != ConsoleKey.Escape);
+        //}
         public static void Arvore()
         {
             do
@@ -198,15 +198,15 @@ namespace POO2.Trabalho2.Util
             else if (Acao.Equals(ConsoleKey.DownArrow))
                 objeto.MoveNext();
         }
-        public static void Abrir<TTipo>(TTipo objeto) => objeto.ToString();
-        public static void Remover(IIterator objeto) => objeto.RemoveItem(objeto.Current);
-        public static void MostrarConteudo(IIterator objeto)
-        {
-            foreach (var item in objeto.Itens)
-            {
-                if (item.Equals(objeto.Current)) { Selecionar(item.ToString()); }
-                else { Console.WriteLine(item); }
-            }
-        }
+        public static void Abrir<TTipo>(TTipo objeto) {Campo("Conteúdo"); Mostrar(objeto.ToString());}
+        //public static void Remover(IIterator objeto) => RemoveItem(objeto);
+        //public static void MostrarConteudo(IIterator objeto)
+        //{
+        //    foreach (var item in Itens)
+        //    {
+        //        if (item.Equals(objeto.Current)) { Selecionar(item.ToString()); }
+        //        else { Console.WriteLine(item); }
+        //    }
+        //}
     }
 }

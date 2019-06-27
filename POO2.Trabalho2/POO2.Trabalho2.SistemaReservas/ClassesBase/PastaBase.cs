@@ -10,21 +10,18 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class PastaBase : ObjetoBase
     {
-        public override int Bytes { get { return Conteudo.Sum(x => x.Bytes); } }
-        public override TipoObjeto Tipo { get { return TipoObjeto.Pasta; } }
-        public override IObjeto Pai { get; set; }
-        public override Cor Cor { get { return Cor.Am; } set { } }
-        public ICollection<IObjeto> Conteudo = new List<IObjeto>();
-
-        //public PastaBase(LinkedList<IObjeto> _itens) : base(_itens) { }
-
-        public PastaBase(string nome, string conteudo, LinkedList<IObjeto> _itens) : base(nome, conteudo, _itens)
+        public PastaBase(string nome)
         {
             Id = ProximoId;
             Nome = nome;
             Nivel += 3;
-            //Itens.AddLast(this);
+            Itens.AddLast(this);
         }
+        public override int Bytes { get { return Conteudo.Sum(x => x.Bytes); } }
+        public override TipoObjeto Tipo { get { return TipoObjeto.Pasta; } }
+        public override IObjeto Pai { get; set; }
+        public override Cor Cor { get { return Cor.Am; } set { } }
+        public ICollection<IObjeto> Conteudo { get; set; } = new List<IObjeto>();
         public override void Adicionar(IObjeto filho)
         {
             filho.Nivel = Nivel + 3;
@@ -84,7 +81,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             foreach (var noh in pasta.Conteudo)
             {
                 var teste = noh.PathVirtual;
-                if (noh.Tipo == TipoObjeto.Arquivo && noh.PathVirtual.Replace('/', '\\').Equals(pathVirtual)) { Current = noh; Estrutura(); }
+                if (noh.Tipo == TipoObjeto.Arquivo && noh.PathVirtual.Replace('/', '\\').Equals(pathVirtual)) { Current = noh; OrdenarItens(MenuHelper.Raiz); }
                 if (noh.Tipo == TipoObjeto.Pasta) { ((Pasta)noh).LocalizarArquivoPorCaminho((Pasta)noh, pathVirtual); }
             }
             return false;
@@ -103,22 +100,78 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             try { return ((Pasta)obj).Id == this.Id; }
             catch (Exception) { return false; }
         }
-        public bool Estrutura()
+        public void EstruturarItens()
         {
-            Current = this;
-            Selecionar(this.ToString());
-            try { this.EstruturaFilhos(); return true; }
-            catch (Exception) { return false; }
+            foreach (var noh in (LinkedList<IObjeto>)Itens)
+            {
+                if (noh.Equals(Current)) { Selecionar(noh.ToString()); }
+                else { Imprimir(noh.ToString(), noh.Cor); }
+            }
         }
-        public override bool EstruturaFilhos()
+
+        public LinkedList<IObjeto> listaReordenada = new LinkedList<IObjeto>();
+        public void Estrutura()
+        {
+            OrdenarItens(MenuHelper.Raiz);
+            Itens = listaReordenada;
+            EstruturarItens();
+        }
+
+        public override bool OrdenarItens(Pasta pasta)
         {
             try
             {
-                foreach (var noh in this.Conteudo)
+                foreach (var noh in (LinkedList<IObjeto>)Itens)
                 {
-                    if (noh.Equals(Current)) { Selecionar(noh.ToString()); }
-                    else { Imprimir(noh.ToString(), noh.Cor); }
-                    noh.EstruturaFilhos();
+                    if (noh == noh.Pai && noh == pasta && listaReordenada.Count == 0)
+                    {
+                        if (noh.Equals(Current))
+                        {
+                            if (!listaReordenada.Contains(noh))
+                            {
+                                listaReordenada.AddLast(noh);
+                            }
+                        }
+                        else
+                        {
+                            if (!listaReordenada.Contains(noh))
+                            {
+                                listaReordenada.AddLast(noh);
+                            }
+                        }
+                        continue;
+                    }
+                    if (noh.Pai == pasta)
+                        if (noh.Tipo == TipoObjeto.Pasta)
+                        {
+                            if (noh.Equals(Current))
+                            {
+                                if (!listaReordenada.Contains(noh))
+                                {
+                                    listaReordenada.AddLast(noh);
+                                }
+                            }
+                            else
+                            {
+                                if (!listaReordenada.Contains(noh))
+                                {
+                                    listaReordenada.AddLast(noh);
+                                }
+                            }
+                            if (Itens != listaReordenada)
+                                OrdenarItens((Pasta)noh);
+                        }
+                        else
+                        {
+                            if (noh.Equals(Current))
+                            {
+                                listaReordenada.AddLast(noh);
+                            }
+                            else
+                            {
+                                listaReordenada.AddLast(noh);
+                            }
+                        }
                 }
                 return true;
             }

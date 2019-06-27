@@ -9,7 +9,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Funcionario : ClasseBase<Funcionario, int>
     {
-        public Funcionario(Funcao funcao, string nome, string email, int ramal, LinkedList<IObjeto> _itens) : base(funcao, nome, email, ramal, _itens)
+        public Funcionario(Funcao funcao, string nome, string email, int ramal)
         {
             Id = ProximoId;
             Funcao = funcao;

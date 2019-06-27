@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,10 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class RelatorioReservasConsole : RelatorioBase
     {
-        protected override int ProximoId { get { return Lista.Count + 1; } }
-        public RelatorioReservasConsole(DateTime data, Sala sala) : base(data, sala) { Id = ProximoId; }
-        public RelatorioReservasConsole(DateTime data) : base(data) { Id = ProximoId; }
-        public RelatorioReservasConsole(Sala sala) : base(sala) { Id = ProximoId; }
-        public RelatorioReservasConsole() { }
+        public RelatorioReservasConsole(DateTime data, Sala sala) { Id = ProximoId; }
+        public RelatorioReservasConsole(DateTime data) { Id = ProximoId; }
+        public RelatorioReservasConsole(Sala sala) { Id = ProximoId; }
+        public RelatorioReservasConsole() { Id = ProximoId; }
         public override void MontarRelatorio(IEnumerable<Reserva> reservas)
         {
             foreach (var reserva in reservas)

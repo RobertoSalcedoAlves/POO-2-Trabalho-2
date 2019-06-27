@@ -11,6 +11,13 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Horario : ClasseBase<Horario, int>
     {
+        public Horario(TimeSpan horaInicio, TimeSpan horaFim)
+        {
+            Id = ProximoId;
+            Inicio = horaInicio;
+            Fim = horaFim;
+            //Lista.Add(this);
+        }
         public TimeSpan Inicio { get; set; }
         public TimeSpan Fim { get; set; }
         public TimeSpan DuracaoPrevista => Fim - Inicio;
@@ -20,13 +27,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                     $"{Inicio.Hours.ToString()}:{Inicio.Minutes.ToString()} " +
                     $"às {Fim.Hours.ToString()}:{Fim.Minutes.ToString()}");
             }
-        }
-        public Horario(TimeSpan horaInicio, TimeSpan horaFim, LinkedList<IObjeto> _itens) : base(horaInicio, horaFim, _itens)
-        {
-            Id = ProximoId;
-            Inicio = horaInicio;
-            Fim = horaFim;
-            //Lista.Add(this);
         }
         public override Horario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
         public override bool Equals(object obj)

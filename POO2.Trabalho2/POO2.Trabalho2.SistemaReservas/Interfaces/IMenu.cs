@@ -21,6 +21,6 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         bool Opcao4 { get; set; }
         void SubMenu();
         void Escolher();
-        void Navegar(ConsoleKeyInfo acao, Iterator<IMenu> item);
+        void Navegar(ConsoleKeyInfo acao, Iterator<IObjeto> item);
     }
 }

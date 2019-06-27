@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
+using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Sala : ClasseBase<Sala, int>
     {
-        public string Nome { get; set; }
-        public int NumeroLugares { get; set; }
-        protected override int ProximoId { get { return Lista.Count + 1; } }
-        public override string Descricao { get => string.Format($"Sala: {this.Nome.ToString()}"); }
         public Sala(string nome, int numeroLugares)
         {
             Id = ProximoId;
@@ -21,6 +18,9 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             NumeroLugares = numeroLugares;
             Lista.Add(this);
         }
+        public string Nome { get; set; }
+        public int NumeroLugares { get; set; }
+        public override string Descricao { get => string.Format($"Sala: {this.Nome.ToString()}"); }
         public IEnumerable<Horario> HorariosOcupados(DateTime data)
         {
             List<Horario> horariosOcupados = new List<Horario>();

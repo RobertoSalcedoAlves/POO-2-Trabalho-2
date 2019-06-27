@@ -6,7 +6,7 @@ namespace POO2.Trabalho2.SistemaReservas.Padroes.Composite
 {
     public class Pasta : PastaBase
     {
-        public Pasta(string nome, string conteudo, LinkedList<IObjeto> _itens) : base(nome, conteudo, _itens) { }
+        public Pasta(string nome) : base(nome) { }
 
     }
 }
