@@ -11,11 +11,12 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Horario : ClasseBase<Horario, int>
     {
-        public Horario(TimeSpan horaInicio, TimeSpan horaFim)
+        public Horario(TimeSpan horaInicio, TimeSpan horaFim, LinkedList<object> itens) : base(itens)
         {
             Id = ProximoId;
             Inicio = horaInicio;
             Fim = horaFim;
+            itens.AddLast(this);
             //Lista.Add(this);
         }
         public TimeSpan Inicio { get; set; }
@@ -28,7 +29,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                     $"às {Fim.Hours.ToString()}:{Fim.Minutes.ToString()}");
             }
         }
-        public override Horario SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
+        public override Horario SelecionarPorId(int id) => Lista.FirstOrDefault(x => x.Id == id);
         public override bool Equals(object obj)
         {
             try
@@ -44,6 +45,18 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override void SubMenu()
         {
 
+        }
+        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+        public override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+        public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
         }
     }
 }

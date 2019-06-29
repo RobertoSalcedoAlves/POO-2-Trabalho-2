@@ -4,56 +4,55 @@ using static POO2.Trabalho2.Util.FormataConsole;
 using POO2.Trabalho2.Util;
 using System.Collections.Generic;
 using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
+using System.Linq;
 
 namespace POO2.Trabalho2.SistemaReservas.ClassesBase
 {
     public abstract class ArquivoBase : ObjetoBase
     {
-        public ArquivoBase(string nome, string conteudo)
+        public ArquivoBase(string nome, string conteudo, LinkedList<object> itens) : base(itens)
         {
             Id = ProximoId;
             Nivel = 3;
             Nome = nome;
             Bytes = System.Text.ASCIIEncoding.ASCII.GetByteCount(conteudo);
             Conteudo = conteudo;
-            Itens.AddLast(this);
+            itens.AddLast(this);
         }
         public string Conteudo { get; set; }
         public override int Bytes { get; }
         public override TipoObjeto Tipo { get { return TipoObjeto.Arquivo; } }
-        public override IObjeto Pai { get; set; }
+        public override object Pai { get; set; }
         public override Cor Cor { get { return Cor.Vd; } set { } }
-        public override void Adicionar(IObjeto objeto) => Negado();
-        public void Remover(IObjeto o) => Negado();
+        public override void Adicionar(object objeto) => Negado();
+        public void Remover(IObjeto objeto) => Negado();
         private void Negado() => Console.WriteLine("Não permitido");
         public override string ToString() => string.Format($"{new String(' ', this.Nivel)}{this.Nome} [{this.Bytes.ToString()} bytes]");
-        public override bool Equals(object obj)
+        public override void SubMenu() { throw new NotImplementedException(); }
+        public override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando)
         {
-            try { return ((Arquivo)obj).Id == this.Id; }
-            catch (Exception) { return false; }
+            throw new NotImplementedException();
         }
-        public override bool OrdenarItens(Pasta pasta) => false;
-        public override void SubMenu()
+        public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
         {
-            do
-            {
-                Console.Clear();
-                Titulo2("OPÇÕES DE ARQUIVOS");
-                Linha('-');
-                Numeracao(new List<string> { "Acessar", "Excluir", "Localizar Por Nome", "Localizar Por Caminho" }, Dir.H);
-                Instrucao("Use as setas Up e Down para navegar pelos itens");
-                Linha('-');
-                Escolher();
-                if (Opcao1) { MenuHelper.Abrir(Current); }
-                if (Opcao2) { RemoveItem(this); } //((Pasta)Pai).RemoveItem(this); }
-                if (Opcao3) { Imprimir("Digite o nome do arquivo: ", Cor.Am); ((Pasta)Pai).SelecionarArquivoPorNome(MenuHelper.Raiz, Console.ReadLine()); }
-                if (Opcao4) { Imprimir("Digite o caminho do arquivo: ", Cor.Am); ((Pasta)Pai).LocalizarArquivoPorCaminho(MenuHelper.Raiz, Console.ReadLine()); }
-                if (Navegou) { Navegar(Acao); }
-                foreach (var item in Itens) { if (item.Equals(Current)) { Selecionar(item.ToString()); } Imprimir(item.ToString()); }
-                Acao = Console.ReadKey(false);
-            }
-            while (!Saiu);
-            Console.ReadKey();
+            throw new NotImplementedException();
+        }
+        public override void Resultado(bool acao, string sucesso = default, string inSucesso = default)
+        {
+            if (acao)
+            { Sucesso(sucesso); }
+            else { Aviso(inSucesso); }
+        }
+        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        {
+            Console.Clear();
+            Titulo1();
+            Titulo2(subTitulo);
+            Numeracao(Opcoes, Dir.H);
+            Instrucao(instrucao);
+            Linha('-');
+            Escolher();
+            if (Navegou) { Navegar(Acao, this.Current); Arvore(ref explorando); }
         }
 
     }

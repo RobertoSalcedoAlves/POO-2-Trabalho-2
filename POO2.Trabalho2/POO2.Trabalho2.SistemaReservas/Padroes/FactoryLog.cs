@@ -1,11 +1,13 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Dominio;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
     public class FactoryLog
     {
+        public static Reserva ReservaStatica;
         public IRelatorio getRelatorio(TipoRelatorio tipoRelatorio, DateTime data, Sala sala)
         {
             return MontarRelatorio(tipoRelatorio);
@@ -27,26 +29,26 @@ namespace POO2.Trabalho2.SistemaReservas
         }
 
         private IRelatorio MontarRelatorio(TipoRelatorio tipoRelatorio, DateTime data = new DateTime(), Sala sala = null)
-        {
+        {            
             SubTipoRelatorio subTipoRelatorio = DefinirConstrutor(data, sala);
 
             if (tipoRelatorio == TipoRelatorio.Arquivo)
                 switch (subTipoRelatorio)
                 {
-                    case SubTipoRelatorio.Completo: return new RelatorioReservasArquivo();
-                    case SubTipoRelatorio.DataSala: return new RelatorioReservasArquivo(data, sala);
-                    case SubTipoRelatorio.Data: return new RelatorioReservasArquivo(data);
-                    case SubTipoRelatorio.Sala: return new RelatorioReservasArquivo(sala);
+                    case SubTipoRelatorio.Completo: return new RelatorioReservasArquivo(MenuHelper.Reservas);
+                    case SubTipoRelatorio.DataSala: return new RelatorioReservasArquivo(data, sala, MenuHelper.Reservas);
+                    case SubTipoRelatorio.Data: return new RelatorioReservasArquivo(data, MenuHelper.Reservas);
+                    case SubTipoRelatorio.Sala: return new RelatorioReservasArquivo(sala, MenuHelper.Reservas);
                 }
             else
                 switch (subTipoRelatorio)
                 {
-                    case SubTipoRelatorio.Completo: return new RelatorioReservasConsole();
-                    case SubTipoRelatorio.DataSala: return new RelatorioReservasArquivo(data, sala);
-                    case SubTipoRelatorio.Data: return new RelatorioReservasArquivo(data);
-                    case SubTipoRelatorio.Sala: return new RelatorioReservasArquivo(sala);
+                    case SubTipoRelatorio.Completo: return new RelatorioReservasConsole(MenuHelper.Reservas);
+                    case SubTipoRelatorio.DataSala: return new RelatorioReservasArquivo(data, sala, MenuHelper.Reservas);
+                    case SubTipoRelatorio.Data: return new RelatorioReservasArquivo(data, MenuHelper.Reservas);
+                    case SubTipoRelatorio.Sala: return new RelatorioReservasArquivo(sala, MenuHelper.Reservas);
                 }
-            return new RelatorioReservasConsole();
+            return new RelatorioReservasConsole(MenuHelper.Reservas);
         }
 
         private SubTipoRelatorio DefinirConstrutor(DateTime data = new DateTime(), Sala sala = null)

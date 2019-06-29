@@ -11,17 +11,19 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Funcao : ClasseBase<Funcao, int>
     {
-        public Funcao(string nome)
+        public Funcao(string nome, LinkedList<object> itens) : base(itens)
         {
             Id = ProximoId;
-            Nome = nome; Lista.Add(this);
+            Nome = nome;
+            Lista.AddLast(this);
+            itens.AddLast(this);
             //Lista.Add(this);
         }
         public string Nome { get; set; }
         public override string Descricao {
             get { return string.Format($"Funcão: {this.Nome}"); }
         }
-        public override Funcao SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
+        public override Funcao SelecionarPorId(int id) => Lista.FirstOrDefault(x => x.Id == id);
         public override bool Equals(object obj)
         {
             try
@@ -37,6 +39,18 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override void SubMenu()
         {
 
+        }
+        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+        public override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+        public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
         }
     }
 }

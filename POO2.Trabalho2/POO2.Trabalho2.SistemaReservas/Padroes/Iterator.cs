@@ -1,25 +1,17 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Dominio;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static POO2.Trabalho2.Util.FormataConsole;
 
 namespace POO2.Trabalho2.SistemaReservas
 {
-    public abstract class Iterator<TTipo> : IIterator
-        where TTipo : class
+    public abstract class Iterator : IIterator
     {
-        //public Iterator(Funcionario funcionario, Sala sala, DateTime data, Horario horario) { }
-        //public Iterator(Funcao funcao, string nome, string email, int ramal) {}
-        //public Iterator(string nome, string conteudo) { }
-        //public Iterator(string nome) { }
-        //public Iterator(TimeSpan horaInicio, TimeSpan horaFim) { }
-        //public Iterator(string nome, int numeroLugares) { }
-        //public Iterator(DateTime data, Sala sala) { }
-        //public Iterator(DateTime data) { }
-        //public Iterator(Sala sala) { }
-        public Iterator() { }
-        public static LinkedList<TTipo> Itens { get; set; } = new LinkedList<TTipo>();
+        public Iterator(LinkedList<object> itens) { Itens = itens; }
+        public LinkedList<object> Itens { get; set; } = new LinkedList<object>();
         public int indice { get; set; }
         public void Reset() => indice = 0;
         public object Current { get { return PegaItem(indice); } set { } }
@@ -44,8 +36,15 @@ namespace POO2.Trabalho2.SistemaReservas
             return Itens.ElementAt(index);
         }
         public void Dispose() => this.Dispose();
-        public void AdicionaItem(TTipo item) => Itens.AddLast(item);
-        public void RemoveItem(TTipo item) => Itens.Remove(item);
+        public void AdicionaItem(object item) => Itens.AddLast(item);
+        public void RemoveItem(object item) => Itens.Remove(item);
+        public void DefinirNovoCurrent(IObjeto noh)
+        {
+            int novoIndice = 0;
+            foreach (var item in Itens) { if (item == noh) { indice = novoIndice; break; }; novoIndice++; }
+        }
+        public abstract void RemoverNoh();
+        public abstract void ImprimirNoh(object noh, object current);
 
         #region IMenu
         public ConsoleKeyInfo Acao { get; set; }
@@ -61,10 +60,11 @@ namespace POO2.Trabalho2.SistemaReservas
         public bool Opcao4 { get; set; }
         public bool Opcao5 { get; set; }
         public bool Opcao6 { get; set; }
+        public abstract Cor Cor { get; set; }
         public abstract void SubMenu();
         public void Escolher(bool ler = true)
         {
-            Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = false;
+            Navegou = Abriu = Voltou = Removeu = Saiu = Opcao1 = Opcao2 = Opcao3 = Opcao4 = Opcao5 = Opcao6 = false;
             if (Ler)
             {
                 Navegou = Acao.Key == ConsoleKey.UpArrow || Acao.Key == ConsoleKey.DownArrow ? true : false;
@@ -81,13 +81,18 @@ namespace POO2.Trabalho2.SistemaReservas
             }
             Ler = !Ler;
         }
-        public void Navegar(ConsoleKeyInfo acao)
+        public void Navegar(ConsoleKeyInfo acao, object current)
         {
+            Current = current;
             if (acao.Key == ConsoleKey.UpArrow)
                 MoveBefore();
             else if (acao.Key == ConsoleKey.DownArrow)
                 MoveNext();
         }
+        public abstract void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando);
+        public abstract void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando);
+        public abstract void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
+        public abstract void Resultado(bool acao, string sucesso = "Operação realizada com sucesso!", string inSucesso = "Operação não realizada!");
         #endregion
     }
 }

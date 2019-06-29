@@ -9,14 +9,14 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
     public interface IIterator : IMenu, IDisposable, IEnumerator
     {
-        object Current { get; set; }
         int indice { get; set; }
         bool EhUltimo();
         bool EhPrimeiro();
         bool MoveBefore();
-        bool MoveNext();
         int PegaNumeroItems();
         object PegaItem(int index);
-        void Reset();
+        void DefinirNovoCurrent(IObjeto noh);
+        void RemoverNoh();
+        void ImprimirNoh(object noh, object current);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
-using static POO2.Trabalho2.Util.FormataConsole;
+using System.Collections.Generic;
 
 namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
@@ -11,11 +11,19 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         int Bytes { get; }
         string PathVirtual { get; set; }
         TipoObjeto Tipo { get; }
-        IObjeto Pai { get; set; }
-        void Adicionar(IObjeto filho);
+        object Pai { get; set; }
+        void Adicionar(object filho);
         bool OrdenarItens(Pasta pasta);
-        string PegarPath(IObjeto objeto, string pathVirtual);
-        Cor Cor { get; set; }
+        string DefinirPath(IObjeto objeto, string pathVirtual);
+        LinkedList<object> listaReordenada { get; set; }
+        void Arvore(ref bool explorando, object nohPai = null);
+        void AbrirArquivo(object objeto);
+        bool SelecionarArquivoPorPath(string path);
+        bool SelecionarArquivoPorNome(string nomeArquivo);
+        bool RemoverArquivoPorNome(string nomeArquivo);
+        bool RemoverArquivoPorCaminho(string pathVirtual);
+        bool LocalizarArquivoPorCaminho(string pathVirtual);
+        void EstruturarItens(object nohPai);        
     }
     public enum TipoObjeto { Arquivo, Pasta }
 }

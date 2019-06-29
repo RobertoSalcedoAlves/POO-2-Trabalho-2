@@ -11,12 +11,13 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class Sala : ClasseBase<Sala, int>
     {
-        public Sala(string nome, int numeroLugares)
+        public Sala(string nome, int numeroLugares, LinkedList<object> itens) : base(itens)
         {
             Id = ProximoId;
             Nome = nome;
             NumeroLugares = numeroLugares;
-            Lista.Add(this);
+            Lista.AddLast(this);
+            itens.AddLast(this);
         }
         public string Nome { get; set; }
         public int NumeroLugares { get; set; }
@@ -24,9 +25,9 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public IEnumerable<Horario> HorariosOcupados(DateTime data)
         {
             List<Horario> horariosOcupados = new List<Horario>();
-            foreach (var reserva in Reserva.Reservas)
-                if (reserva.Sala == this && reserva.Data == data)
-                    horariosOcupados.Add(reserva.Horario);
+            foreach (var reserva in MenuHelper.Reservas)
+                if (((Reserva)reserva).Sala == this && ((Reserva)reserva).Data == data)
+                    horariosOcupados.Add(((Reserva)reserva).Horario);
             return horariosOcupados;
         }
         public IEnumerable<Horario> HorariosDisponiveis(DateTime data)
@@ -34,19 +35,21 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             TimeSpan pontoPartida = new TimeSpan(0, 0, 0);
             Horario horarioLivre;
             List<Horario> horariosLivres = new List<Horario>();
-            foreach (var reserva in Reserva.Reservas)
-                if (reserva.Sala == this && reserva.Data == data)
+            foreach (var reserva in MenuHelper.Reservas)
+            {
+                if (((Reserva)reserva).Sala == this && ((Reserva)reserva).Data == data)
                 {
-                    if (pontoPartida < reserva.Horario.Inicio)
+                    if (pontoPartida < ((Reserva)reserva).Horario.Inicio)
                     {
-                        horarioLivre = new Horario(pontoPartida, reserva.Horario.Inicio);
-                        pontoPartida = reserva.Horario.Fim;
+                        horarioLivre = new Horario(pontoPartida, ((Reserva)reserva).Horario.Inicio, MenuHelper.Horarios);
+                        pontoPartida = ((Reserva)reserva).Horario.Fim;
                         horariosLivres.Add(horarioLivre);
                     }
                 }
+            }
             if (pontoPartida < new TimeSpan(24, 0, 0))
             {
-                horarioLivre = new Horario(pontoPartida, new TimeSpan(0, 0, 0));
+                horarioLivre = new Horario(pontoPartida, new TimeSpan(0, 0, 0), MenuHelper.Horarios);
                 horariosLivres.Add(horarioLivre);
             }
             return horariosLivres;
@@ -55,7 +58,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         {
             return HorariosDisponiveis(data).Where(x => x.Inicio <= horarioDesejado.Inicio && x.Fim >= horarioDesejado.Fim).Count() > 0;
         }
-        public override Sala SelecionarPorId(int id) => Lista.Find(x => x.Id == id);
+        public override Sala SelecionarPorId(int id) => Lista.FirstOrDefault(x => x.Id == id);
         public override bool Equals(object obj)
         {
             try
@@ -71,6 +74,21 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         public override void SubMenu()
         {
 
+        }
+
+        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
         }
     }
 }

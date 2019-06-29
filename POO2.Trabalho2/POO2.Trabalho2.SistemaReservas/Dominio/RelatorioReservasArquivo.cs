@@ -1,24 +1,39 @@
 ﻿using POO2.Trabalho2.SistemaReservas.ClassesBase;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
+using POO2.Trabalho2.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static POO2.Trabalho2.Util.FormataConsole;
 
 namespace POO2.Trabalho2.SistemaReservas.Dominio
 {
     public class RelatorioReservasArquivo : RelatorioBase
     {
-
-
         const string NOME_ARQUIVO = @"\Relatório.txt";
-
-        public RelatorioReservasArquivo(DateTime data, Sala sala) { Id = ProximoId; }
-        public RelatorioReservasArquivo(DateTime data) { Id = ProximoId; }
-        public RelatorioReservasArquivo(Sala sala) { Id = ProximoId; }
-        public RelatorioReservasArquivo() { Id = ProximoId; }
-        public string Path { get; set; }  
-        public override void MontarRelatorio(IEnumerable<Reserva> reservas)
+        public RelatorioReservasArquivo(DateTime data, Sala sala, LinkedList<object> itens) : base(itens)
+        {
+            Id = ProximoId;
+            itens.AddLast(this);
+        }
+        public RelatorioReservasArquivo(DateTime data, LinkedList<object> itens) : base(itens)
+        {
+            Id = ProximoId;
+            itens.AddLast(this);
+        }
+        public RelatorioReservasArquivo(Sala sala, LinkedList<object> itens) : base(itens)
+        {
+            Id = ProximoId;
+            itens.AddLast(this);
+        }
+        public RelatorioReservasArquivo(LinkedList<object> itens) : base(itens)
+        {
+            Id = ProximoId;
+            itens.AddLast(this);
+        }
+        public string Path { get; set; }
+        public override void MontarRelatorio(LinkedList<object> reservas)
         {
             Console.Write("informe o diretório: ");
             Path = string.Format(@"{0}\{1}", Console.ReadLine().Replace('/', '\\'), NOME_ARQUIVO);
@@ -37,23 +52,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
                 return;
             }
             Console.WriteLine("Relatório gerado em: " + Path.ToString());
-        }
-        public override void GerarRelatorio()
-        {
-            MontarRelatorio(Reserva.Reservas); ;
-        }
-        public override void GerarRelatorio(Sala sala)
-        {
-            MontarRelatorio(Reserva.Reservas.Where(x => x.Sala == sala));
-        }
-        public override void GerarRelatorio(DateTime data)
-        {
-            MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data));
-        }
-        public override void GerarRelatorio(DateTime data, Sala sala)
-        {
-            MontarRelatorio(Reserva.Reservas.Where(x => x.Data == data && x.Sala == sala));
-        }
+        }        
         public override bool Equals(object obj)
         {
             try
@@ -64,6 +63,14 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             {
                 return false;
             }
+        }
+        public override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
+        }
+        public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
+        {
+            throw new NotImplementedException();
         }
     }
 }

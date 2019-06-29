@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Reserva">
-    <Position X="7.25" Y="8.25" Width="2" />
+    <Position X="0.5" Y="3.5" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAIAAQBAAAAgAAAAQAAAAAgABAAAAAAAAEAAAA=</HashCode>
+      <HashCode>gAAAAAAMACQJAAAAgAIAAACAAAAgBRBAAAgAAAECGAA=</HashCode>
       <FileName>Dominio\Reserva.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.ClasseBase&lt;TTipo, TChave&gt;">
-    <Position X="3.75" Y="4" Width="2" />
+    <Position X="0.5" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAEABCAAEgAAAAAAAAAQAAAABAAAAAAEAAIA=</HashCode>
       <FileName>ClassesBase\ClasseBase.cs</FileName>
@@ -16,68 +16,177 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.RelatorioBase">
-    <Position X="9.75" Y="8.25" Width="2.25" />
+    <Position X="3" Y="4.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAQAAAAAAACAAEAAAA=</HashCode>
+      <HashCode>ABAAAAAAAAABAAAAAAIAAAAAAQAQBAAAAAACAAEAAAA=</HashCode>
       <FileName>ClassesBase\RelatorioBase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Funcao">
-    <Position X="12.25" Y="8.25" Width="1.75" />
+    <Position X="5.5" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAAAAgAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAAAAgAIAAACAAAAABAAAAAAAAAEAEAA=</HashCode>
       <FileName>Dominio\Funcao.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Funcionario">
-    <Position X="14.5" Y="8.25" Width="2" />
+    <Position X="7.75" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACABAAAAgAAAQAAAAAAAAAAAAAAAAAEAIAA=</HashCode>
+      <HashCode>AAAAAAAAACABAAAAgAIAQACAAAAABQAAAAAAAAEAMAA=</HashCode>
       <FileName>Dominio\Funcionario.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Horario">
-    <Position X="16.75" Y="8.25" Width="1.75" />
+    <Position X="10" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAABAACAgAAAAAAAAAAAAAAAAAAAAIUAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAABAACAgAIAAACAAAAABAAAAAAAAIUAEAA=</HashCode>
       <FileName>Dominio\Horario.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.Sala">
-    <Position X="19" Y="8.25" Width="2" />
+    <Position X="12.25" Y="4.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAgAAAAAABABAAhAAAAAACAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <HashCode>AAAAgAAAAAABABAAhAIAAACCAAAABAAAAAAAAAEAEAA=</HashCode>
       <FileName>Dominio\Sala.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.RelatorioReservasArquivo">
-    <Position X="7.25" Y="11.75" Width="3" />
+    <Position X="0.5" Y="9.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAACAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAgAAAAACAAAAQAAAAAAAAAACAEAA=</HashCode>
       <FileName>Dominio\RelatorioReservasArquivo.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.Dominio.RelatorioReservasConsole">
-    <Position X="11.75" Y="11.75" Width="3" />
+    <Position X="4.5" Y="9.25" Width="3" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAACAAAAQBAAAAAAAAAAAEAA=</HashCode>
       <FileName>Dominio\RelatorioReservasConsole.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.ClasseBase&lt;TTipo, TChave&gt;" Collapsed="true">
+    <Position X="13.75" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAEABCAAEgAIABAKAAAUABAABAAAAAAEIEIA=</HashCode>
+      <FileName>ClassesBase\ClasseBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Padroes.Composite.Arquivo" Collapsed="true">
+    <Position X="8.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Padroes\Composite\Arquivo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Padroes.Composite.Pasta" Collapsed="true">
+    <Position X="10.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Padroes\Composite\Pasta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.FactoryLog" Collapsed="true">
+    <Position X="13.25" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAwAAAAAAAAAAAAAAAAQAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Padroes\FactoryLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Iterator" Collapsed="true">
+    <Position X="15.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAACAAFIAAIA6IBoLgAAkABAIEJICAAIAIEAA=</HashCode>
+      <FileName>Padroes\Iterator.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="POO2.Trabalho2.Util.FormataConsole" Collapsed="true">
+    <Position X="10" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.PastaBase" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAEAAJAAACAAAEABAAAAAAIAAAMEAQ=</HashCode>
+      <FileName>ClassesBase\PastaBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.ObjetoBase" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAEARAAACgAWgAJABAYAAgEAAAEAEABMAAEAEAQ=</HashCode>
+      <FileName>ClassesBase\ObjetoBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="15.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.Program" Collapsed="true">
+    <Position X="17.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.ArquivoBase" Collapsed="true">
+    <Position X="15.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAgAEAANAAACAAAEABAAAAAAIAAAMEAQ=</HashCode>
+      <FileName>ClassesBase\ArquivoBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.ICRUD&lt;TTipo, TChave&gt;">
-    <Position X="6" Y="4" Width="2" />
+    <Position X="2.75" Y="0.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAQAAAABAAAAAAEAAIA=</HashCode>
       <FileName>Interfaces\ICRUD.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.IRelatorio">
-    <Position X="9.75" Y="6.5" Width="2.25" />
+    <Position X="3" Y="3.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAACAAAAAAA=</HashCode>
       <FileName>Interfaces\IRelatorio.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.IIterator" Collapsed="true">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABgIgAAgAAAIABIAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IIterator.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.IMenu" Collapsed="true">
+    <Position X="9" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQCAAAAAAAAAAIAAIA4IAADAAAEABAAAAACAAIAIEAA=</HashCode>
+      <FileName>Interfaces\IMenu.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.IObjeto" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAEABAAAAgASAAJAAAQAAgAAAAEAEABMAAEAEAQ=</HashCode>
+      <FileName>Interfaces\IObjeto.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="System.IDisposable" Collapsed="true">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="System.Collections.IEnumerator" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Enum Name="POO2.Trabalho2.SistemaReservas.Interfaces.TipoObjeto" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Interfaces\IObjeto.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

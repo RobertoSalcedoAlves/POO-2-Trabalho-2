@@ -19,7 +19,7 @@ namespace POO2.Trabalho2.Util
             Console.ResetColor();
         }
         public static void Mostrar(string conteudo) { Imprimir(conteudo, Cor.Bc, Cor.Pt, true); }
-        public static void Campo(string conteudo, Cor texto = Cor.Vd, Cor fundo = Cor.Pt)
+        public static void Campo(string conteudo, Cor texto = Cor.Rs, Cor fundo = Cor.Pt)
         {
             Console.BackgroundColor = Txt(fundo);
             Console.ForegroundColor = Txt(texto);
@@ -81,6 +81,7 @@ namespace POO2.Trabalho2.Util
         }
         public static void Selecionar(string conteudo, Cor corFonte = Cor.Az, Cor corFundo = Cor.Am) => Imprimir(conteudo, corFonte, corFundo);
         public static void Aviso(string conteudo) => Imprimir(conteudo, Cor.Vm);
+        public static void Sucesso(string conteudo) => Imprimir(conteudo, Cor.Vd);
         public static void Destaque(string conteudo, Cor corFonte = Cor.PdTxt, Cor corFundo = Cor.PdFnd) => Imprimir(conteudo, corFonte, corFundo);
         public static void Titulo1(string conteudo = "SISTEMA DE RESERVA DE SALAS") { Linha(); Destaque(Centralizado(conteudo), Cor.Az, Cor.Bc); Linha(); }
         public static void Titulo2(string conteudo) => Destaque(Centralizado(conteudo), Cor.Pt, Cor.Cz);

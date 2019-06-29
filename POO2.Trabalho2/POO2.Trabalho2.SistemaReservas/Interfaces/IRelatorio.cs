@@ -6,7 +6,7 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
 {
     public interface IRelatorio
     {
-        void MontarRelatorio(IEnumerable<Reserva> reservas);
+        void MontarRelatorio(LinkedList<object> reservas);
         void GerarRelatorio();
         void GerarRelatorio(Sala sala);
         void GerarRelatorio(DateTime data);

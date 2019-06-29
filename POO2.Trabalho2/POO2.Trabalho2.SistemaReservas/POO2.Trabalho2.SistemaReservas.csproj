@@ -60,6 +60,8 @@
     <Compile Include="Interfaces\IObjeto.cs" />
     <Compile Include="ClassesBase\PastaBase.cs" />
     <Compile Include="ClassesBase\ArquivoBase.cs" />
+    <Compile Include="Iterators\ArquivosIterator.cs" />
+    <Compile Include="Iterators\SalaIterator.cs" />
     <Compile Include="Padroes\Composite\Arquivo.cs" />
     <Compile Include="Padroes\Composite\Pasta.cs" />
     <Compile Include="Padroes\FactoryLog.cs" />
