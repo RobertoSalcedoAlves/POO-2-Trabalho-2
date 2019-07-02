@@ -41,7 +41,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             { Sucesso(sucesso); }
             else { Aviso(inSucesso); }
         }
-        public abstract override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
+        public abstract override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
         public abstract string Descricao { get; }
         public abstract override void SubMenu();
         public abstract override void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando);

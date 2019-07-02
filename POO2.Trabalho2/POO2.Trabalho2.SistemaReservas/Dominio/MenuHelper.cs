@@ -1,4 +1,5 @@
 ﻿using POO2.Trabalho2.SistemaReservas;
+using POO2.Trabalho2.SistemaReservas.ClassesBase;
 using POO2.Trabalho2.SistemaReservas.Dominio;
 using POO2.Trabalho2.SistemaReservas.Interfaces;
 using POO2.Trabalho2.SistemaReservas.Padroes.Composite;
@@ -17,8 +18,8 @@ namespace POO2.Trabalho2.Util
         public static LinkedList<object> Funcoes = new LinkedList<object>();
         public static LinkedList<object> Horarios = new LinkedList<object>();
         public static LinkedList<object> Salas = new LinkedList<object>();
-        public static LinkedList<object> RelatoriosArquivo = new LinkedList<object>();
-        public static LinkedList<object> RelatoriosConsole = new LinkedList<object>();
+        public static LinkedList<object> Relatorios = new LinkedList<object>();
+        public static RelatorioBase RelatoriosReservas = new RelatorioReservasArquivo(Relatorios);
         public static Pasta Raiz = new Pasta("Raiz", Pastas);
         static ConsoleKeyInfo Acao { get; set; }
         static bool Navegou, Abriu, Voltou, Removeu, Saiu, Opcao1, Opcao2, Opcao3, Opcao4;
@@ -131,7 +132,7 @@ namespace POO2.Trabalho2.Util
                 Opcao4 = Acao.Key == ConsoleKey.NumPad4 ? true : false;
 
                 if (Opcao1) { ((Reserva)(Reservas.ElementAt(0))).SubMenu(); }
-                if (Opcao4) { ((RelatorioReservasArquivo)(RelatoriosArquivo.ElementAt(0))).SubMenu(); }
+                if (Opcao2) { ((RelatorioBase)(Relatorios.ElementAt(0))).SubMenu(); }
                 if (Opcao3) { Raiz.SubMenu(); }
 
                 Acao = Console.ReadKey(false);

@@ -40,7 +40,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Ler = false;
             do
             {
-                TopoMenu(subTitulo, instrucao, new List<string> { "Explorar", "Localizar", "Abrir", "Excluir" }, ref explorando);
+                TopoMenu(this, subTitulo, instrucao, new List<string> { "Explorar", "Localizar", "Abrir", "Excluir" }, ref explorando);
                 if (Voltou) { break; }///SETA ESQUERDA
                 if (Removeu) { ExcluirOpcoesSubMenu(ref informado, ref explorando); }///DELETE
                 if (Opcao1) { Arvore(ref explorando); }///EXPLORAR
@@ -63,7 +63,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         {
             do
             {
-                TopoMenu(subTitulo, instrucao2, new List<string> { "Por nome", "Por path", "Explorar", "Excluir" }, ref explorando);
+                TopoMenu(this, subTitulo, instrucao2, new List<string> { "Por nome", "Por path", "Explorar", "Excluir" }, ref explorando);
                 if (Voltou) { break; }///SETA ESQUERDA
                 if (Removeu) { ExcluirOpcoesSubMenu(ref informado, ref explorando); }///DELETE
                 if (Opcao1)
@@ -109,7 +109,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             { Sucesso(sucesso); }
             else { Aviso(inSucesso); }
         }
-        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        public override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
         {
             Console.Clear();
             Titulo1();
@@ -118,7 +118,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Instrucao(instrucao);
             Linha('-');
             Escolher();
-            if (Navegou) { Navegar(Acao, this.Current); Arvore(ref explorando); }
+            if (Navegou) { Navegar(Acao, objetoTipo); Arvore(ref explorando); }
         }
     }
 }

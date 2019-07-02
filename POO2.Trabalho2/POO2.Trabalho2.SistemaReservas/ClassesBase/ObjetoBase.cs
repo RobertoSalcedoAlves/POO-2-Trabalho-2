@@ -88,7 +88,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         public override bool Equals(object obj)
         {
             var objeto = (IObjeto)obj;
-            if (objeto.Tipo == TipoObjeto.Arquivo) { return ((Arquivo)obj).Id == this.Id; }
+            if (objeto.Tipo == TipoObjeto.Arquivo) {return ((Arquivo)obj).Id == this.Id;}
             else { return ((Pasta)obj).Id == this.Id; }
         }
         public string DefinirPath(IObjeto objeto, string pathVirtual)
@@ -138,6 +138,8 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             ImprimirNoh(nohPai, this.Current);
             foreach (var noh in (LinkedList<IObjeto>)((Pasta)nohPai).Conteudo)
             {
+                var obj = (IObjeto)noh;
+                Cor = obj.Tipo == TipoObjeto.Arquivo ? Cor.Vd : Cor.Am;
                 if (noh.Tipo == TipoObjeto.Arquivo) { ImprimirNoh(noh, this.Current); }
                 else { EstruturarItens(noh); }
             }
@@ -209,6 +211,8 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
         }
         public override void ImprimirNoh(object noh, object current)
         {
+            var obj = (IObjeto)current;
+            Cor = obj.Tipo == TipoObjeto.Arquivo ? ((Arquivo)obj).Cor : ((Pasta)obj).Cor;
             if (noh.Equals(current)) { Selecionar(noh.ToString()); }
             else { Imprimir(noh.ToString(), Cor); }
         }

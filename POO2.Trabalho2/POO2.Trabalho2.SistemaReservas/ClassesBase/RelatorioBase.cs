@@ -13,22 +13,22 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
     {
         public RelatorioBase(DateTime data, Sala sala, LinkedList<object> itens) : base(itens)
         {
-            GerarRelatorio(data, sala);
+            //GerarRelatorio(data, sala);
             itens.AddLast(this);
         }
         public RelatorioBase(DateTime data, LinkedList<object> itens) : base(itens)
         {
-            GerarRelatorio(data);
+            //GerarRelatorio(data);
             itens.AddLast(this);
         }
         public RelatorioBase(Sala sala, LinkedList<object> itens) : base(itens)
         {
-            GerarRelatorio( sala);
+           //GerarRelatorio( sala);
             itens.AddLast(this);
         }
         public RelatorioBase(LinkedList<object> itens) : base(itens)
         {
-            GerarRelatorio();
+            //GerarRelatorio();
             itens.AddLast(this);
         }
         public override string Descricao {
@@ -69,7 +69,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
                 lista.AddLast(reserva);
             MontarRelatorio(lista);
         }
-        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        public override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
         {
             Console.Clear();
             Titulo1();
@@ -88,7 +88,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Ler = false;
             do
             {
-                TopoMenu(subTitulo, instrucao, new List<string> { "Computador", "Pasta Virtual" }, ref navegando);
+                TopoMenu(this, subTitulo, instrucao, new List<string> { "Computador", "Pasta Virtual" }, ref navegando);
                 if (Voltou) { break; }///SETA ESQUERDA
                 if (Opcao1) { SalvarRelatorioComputador(); }///COMPUTADOR
                 if (Opcao2) { SalvarRelatorioVirtual(ref navegando); }///VIRTUAL
@@ -96,16 +96,14 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             }
             while (!Saiu);
         }
-
         private void SalvarRelatorioVirtual(ref bool navegando)
         {
-            RelatorioReservasConsole relatorio = new RelatorioReservasConsole(MenuHelper.RelatoriosArquivo);
+            RelatorioReservasConsole relatorio = new RelatorioReservasConsole(MenuHelper.Relatorios);
             relatorio.MontarRelatorio(MenuHelper.Reservas);
         }
-
         private void SalvarRelatorioComputador()
         {
-            RelatorioReservasArquivo relatorio = new RelatorioReservasArquivo(MenuHelper.RelatoriosArquivo);
+            RelatorioReservasArquivo relatorio = new RelatorioReservasArquivo(MenuHelper.Relatorios);
             relatorio.MontarRelatorio(MenuHelper.Reservas);
         }
     }

@@ -24,10 +24,10 @@ namespace POO2.Trabalho2.SistemaReservas.Interfaces
         Cor Cor { get; set; }
         void SubMenu();
         void Escolher(bool ler = true);
-        void Navegar(ConsoleKeyInfo acao, object current);               
+        void Navegar(ConsoleKeyInfo acao, IIterator objetoTipo);               
         void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando);
         void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando);
         void Resultado(bool acao, string sucesso = "Operação realizada com sucesso!", string inSucesso = "Operação não realizada!");
-        void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
+        void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
     }
 }

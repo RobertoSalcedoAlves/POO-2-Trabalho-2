@@ -43,7 +43,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             { Sucesso(sucesso); }
             else { Aviso(inSucesso); }
         }
-        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        public override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
         {
             Console.Clear();
             Titulo1();
@@ -52,7 +52,7 @@ namespace POO2.Trabalho2.SistemaReservas.ClassesBase
             Instrucao(instrucao);
             Linha('-');
             Escolher();
-            if (Navegou) { Navegar(Acao, this.Current); Arvore(ref explorando); }
+            if (Navegou) { Navegar(Acao, objetoTipo); Arvore(ref explorando); }
         }
 
     }

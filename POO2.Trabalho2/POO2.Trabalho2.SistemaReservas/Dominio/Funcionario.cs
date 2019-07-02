@@ -39,12 +39,13 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             get {
                 StringBuilder retorno = new StringBuilder();
                 retorno.Append(string.Format($"Funcionário (a): {this.Nome.ToString()} ("));
-                retorno.Append(string.Format($"{this.Funcao.ToString()})"));
-                retorno.Append(string.Format($"Email: {this.Email.ToString()}"));
+                retorno.Append(string.Format($"{this.Funcao.ToString()}) "));
+                retorno.Append(string.Format($"Email: {this.Email.ToString()} "));
                 retorno.Append(string.Format($"Ramal: {this.Ramal.ToString()}"));
                 return retorno.ToString();
             }
         }
+
         public override Funcionario SelecionarPorId(int id) => Lista.FirstOrDefault(x => x.Id == id);
         public override bool Equals(object obj)
         {
@@ -65,7 +66,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             bool explorando = true;
             do
             {
-                TopoMenu("Escolha do Funcionário", instrucao, new List<string> { }, ref explorando);
+                TopoMenu(this, "Escolha do Funcionário", instrucao, new List<string> { }, ref explorando);
                 if (Voltou) { break; }///SETA ESQUERDA
                 
                 if (Abriu) { }
@@ -73,7 +74,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             }
             while (!Saiu);
         }
-        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        public override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
         {
             Console.Clear();
             Titulo1();
@@ -84,7 +85,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
             Escolher();
             if (Navegou && explorando)
             {
-                Navegar(Acao, this.Current);
+                Navegar(Acao, this);
                 foreach (var item in MenuHelper.Reservas)
                 {
                     ImprimirNoh(item, this.Current);
@@ -95,7 +96,6 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         {
             throw new NotImplementedException();
         }
-
         public override void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando)
         {
             throw new NotImplementedException();

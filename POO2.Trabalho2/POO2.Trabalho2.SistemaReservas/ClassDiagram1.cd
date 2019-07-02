@@ -101,10 +101,6 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="POO2.Trabalho2.Util.FormataConsole" Collapsed="true">
-    <Position X="10" Y="10.75" Width="1.5" />
-    <TypeIdentifier />
-  </Class>
   <Class Name="POO2.Trabalho2.SistemaReservas.ClassesBase.PastaBase" Collapsed="true">
     <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
@@ -137,6 +133,10 @@
       <HashCode>AAAAAAQAAAAAAgAEAANAAACAAAEABAAAAAAIAAAMEAQ=</HashCode>
       <FileName>ClassesBase\ArquivoBase.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="POO2.Trabalho2.Util.FormataConsole" Collapsed="true">
+    <Position X="10" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
   </Class>
   <Interface Name="POO2.Trabalho2.SistemaReservas.Interfaces.ICRUD&lt;TTipo, TChave&gt;">
     <Position X="2.75" Y="0.75" Width="2" />

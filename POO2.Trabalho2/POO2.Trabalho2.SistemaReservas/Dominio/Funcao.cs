@@ -40,7 +40,7 @@ namespace POO2.Trabalho2.SistemaReservas.Dominio
         {
 
         }
-        public override void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
+        public override void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando)
         {
             throw new NotImplementedException();
         }

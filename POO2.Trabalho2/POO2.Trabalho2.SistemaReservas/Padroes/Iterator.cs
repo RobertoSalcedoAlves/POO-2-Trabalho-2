@@ -81,17 +81,16 @@ namespace POO2.Trabalho2.SistemaReservas
             }
             Ler = !Ler;
         }
-        public void Navegar(ConsoleKeyInfo acao, object current)
+        public void Navegar(ConsoleKeyInfo acao, IIterator objetoTipo)
         {
-            Current = current;
             if (acao.Key == ConsoleKey.UpArrow)
-                MoveBefore();
+                objetoTipo.MoveBefore();
             else if (acao.Key == ConsoleKey.DownArrow)
-                MoveNext();
+                objetoTipo.MoveNext();
         }
         public abstract void LocalizarSubMenu(string subTitulo, string instrucao2, ref string informado, ref bool explorando);
         public abstract void ExcluirOpcoesSubMenu(ref string informado, ref bool explorando);
-        public abstract void TopoMenu(string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
+        public abstract void TopoMenu(IIterator objetoTipo, string subTitulo, string instrucao, List<string> Opcoes, ref bool explorando);
         public abstract void Resultado(bool acao, string sucesso = "Operação realizada com sucesso!", string inSucesso = "Operação não realizada!");
         #endregion
     }
